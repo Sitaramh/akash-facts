@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>🔥 Akash Facts</title>
 
 <style>
@@ -13,430 +14,492 @@
 body{
   margin:0;
   font-family:Arial,sans-serif;
-  background:#0b0b0f;
-  color:white;
+  background:linear-gradient(135deg,#fff7ed,#ffe4e6);
+  color:#222;
+  min-height:100vh;
+  transition:0.3s;
 }
 
 header{
-  background:linear-gradient(135deg,#ff9800,#ff3d00);
+  background:linear-gradient(135deg,#ff6b00,#e11d48);
+  color:white;
   text-align:center;
-  padding:45px 20px;
+  padding:30px 15px;
 }
 
-.logo{
-  font-size:55px;
+header h1{
+  margin:0;
+  font-size:32px;
 }
 
-h1{
-  font-size:42px;
-  margin:10px 0;
-}
-
-.subtitle{
-  font-size:20px;
+header p{
+  margin:8px 0 0;
 }
 
 .container{
   max-width:700px;
   margin:auto;
-  padding:25px 15px;
+  padding:20px;
 }
 
 .card{
-  background:#18181d;
-  border-radius:22px;
+  background:white;
+  border-radius:20px;
   padding:25px;
-  margin:20px 0;
-  box-shadow:0 8px 25px rgba(0,0,0,.35);
+  margin-top:20px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.12);
 }
 
-h2{
+#fact{
+  font-size:22px;
+  line-height:1.6;
   text-align:center;
-}
-
-select,input{
-  width:100%;
-  padding:15px;
-  border:0;
-  border-radius:12px;
-  font-size:16px;
-  margin-top:10px;
-}
-
-.fact{
-  min-height:150px;
+  min-height:120px;
   display:flex;
   align-items:center;
   justify-content:center;
-  text-align:center;
-  font-size:23px;
-  line-height:1.5;
+}
+
+select,
+input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  font-size:16px;
+  margin-top:8px;
+  outline:none;
 }
 
 button{
   border:0;
   border-radius:12px;
-  padding:14px 20px;
-  margin:6px;
-  font-size:16px;
-  font-weight:bold;
-  background:#ff9800;
+  padding:13px 18px;
+  margin:6px 3px;
+  font-size:15px;
   cursor:pointer;
+  background:#ff6b00;
+  color:white;
 }
 
-button:active{
-  transform:scale(.96);
-}
-
-.main-btn{
-  display:block;
-  margin:10px auto;
-  font-size:19px;
-  padding:16px 30px;
+button:hover{
+  opacity:0.85;
 }
 
 .buttons{
   text-align:center;
+  margin-top:15px;
 }
 
-.likes{
-  text-align:center;
+.next{
+  width:100%;
   font-size:18px;
+  padding:16px;
+  background:#e11d48;
+}
+
+.section-title{
+  margin-top:25px;
 }
 
 .result{
-  background:#25252b;
-  padding:15px;
-  border-radius:12px;
-  margin-top:10px;
-  line-height:1.5;
+  background:#fff7ed;
+  padding:12px;
+  border-radius:10px;
+  margin-top:8px;
 }
 
 footer{
   text-align:center;
-  padding:30px 15px;
-  color:#aaa;
+  padding:25px;
+  margin-top:20px;
+  color:#666;
 }
 
-.light{
-  background:#f4f4f4;
-  color:#111;
-}
+/* Dark Mode */
 
-.light .card{
-  background:white;
-}
-
-.light .result{
-  background:#eee;
-}
-
-.mode{
-  position:absolute;
-  right:15px;
-  top:15px;
-  background:rgba(0,0,0,.35);
+body.dark{
+  background:#111827;
   color:white;
+}
+
+body.dark .card{
+  background:#1f2937;
+}
+
+body.dark input,
+body.dark select{
+  background:#374151;
+  color:white;
+  border-color:#4b5563;
+}
+
+body.dark .result{
+  background:#374151;
+}
+
+body.dark footer{
+  color:#bbb;
 }
 </style>
 </head>
 
 <body>
 
-<button class="mode" onclick="toggleMode()">🌙 Mode</button>
-
 <header>
-  <div class="logo">🔥</div>
-  <h1>Akash Facts</h1>
-  <div class="subtitle">
-    दुनिया के Interesting Facts एक जगह 🚀
-  </div>
+  <h1>🔥 Akash Facts</h1>
+  <p>हर दिन कुछ नया और interesting जानिए 🚀</p>
 </header>
 
 <div class="container">
 
   <div class="card">
-    <h2>🔎 Fact Category</h2>
 
-    <select id="category">
+    <h3>🌍 Category चुनें</h3>
+
+    <select id="category" onchange="showFact()">
       <option value="all">🌍 सभी Facts</option>
       <option value="science">🔬 Science</option>
       <option value="space">🚀 Space</option>
       <option value="animals">🐯 Animals</option>
       <option value="technology">💻 Technology</option>
+      <option value="history">📜 History</option>
+      <option value="world">🌎 World</option>
     </select>
-  </div>
 
-  <div class="card">
-    <div class="fact" id="fact">
-      नीचे दिए गए बटन को दबाकर Amazing Fact देखो! 👇
+    <div id="fact">
+      🔥 Welcome to Akash Facts!
     </div>
 
-    <button class="main-btn" onclick="showFact()">
+    <button class="next" onclick="showFact()">
       🚀 Next Fact
     </button>
 
     <div class="buttons">
-      <button onclick="likeFact()">❤️ Like</button>
-      <button onclick="copyFact()">📋 Copy</button>
-      <button onclick="shareFact()">📤 Share</button>
+
+      <button onclick="likeFact()">
+        ❤️ Like
+      </button>
+
+      <button onclick="copyFact()">
+        📋 Copy
+      </button>
+
+      <button onclick="shareFact()">
+        📤 Share
+      </button>
+
+      <button onclick="toggleMode()">
+        🌙 Mode
+      </button>
+
     </div>
 
-    <div class="likes" id="likes">
+    <p id="likes" style="text-align:center;">
       ❤️ Likes: 0
-    </div>
+    </p>
+
   </div>
 
+
   <div class="card">
-    <h2>➕ अपना Fact जोड़ें</h2>
+
+    <h3 class="section-title">
+      ➕ अपना Fact जोड़ें
+    </h3>
 
     <input
-      type="text"
       id="newFact"
-      placeholder="अपना Fact लिखें"
+      type="text"
+      placeholder="अपना interesting fact लिखें..."
     >
 
-    <div class="buttons">
-      <button onclick="addFact()">➕ Add Fact</button>
-    </div>
+    <button onclick="addFact()">
+      ➕ Add Fact
+    </button>
+
   </div>
 
+
   <div class="card">
-    <h2>🔍 Fact Search</h2>
+
+    <h3 class="section-title">
+      🔍 Fact Search
+    </h3>
 
     <input
-      type="text"
       id="searchFact"
+      type="text"
       placeholder="Fact खोजें..."
+      oninput="searchFacts()"
     >
-
-    <div class="buttons">
-      <button onclick="searchFacts()">🔍 Search</button>
-    </div>
 
     <div id="results"></div>
+
   </div>
 
 </div>
 
 <footer>
-  🔥 Akash Facts © 2026<br>
-  Interesting Facts • Science • Space • Technology
+  🔥 Akash Facts | Learn Something New 🚀
 </footer>
+
 
 <script>
 
-const facts = [
-
-const facts = [
-
-  // 🔬 SCIENCE
-  {text:"🧬 इंसान के शरीर में लगभग 37 ट्रिलियन कोशिकाएँ होती हैं।",category:"science"},
-  {text:"🧠 मानव मस्तिष्क में अरबों न्यूरॉन्स होते हैं।",category:"science"},
-  {text:"❤️ इंसान का दिल एक दिन में लगभग 100,000 बार धड़क सकता है।",category:"science"},
-  {text:"💧 पृथ्वी की सतह का लगभग 71% हिस्सा पानी से ढका है।",category:"science"},
-  {text:"⚡ बिजली की गति प्रकाश की गति से बहुत कम होती है।",category:"science"},
-  {text:"🌡️ पानी सामान्य दबाव पर 100°C पर उबलता है।",category:"science"},
-  {text:"🔊 आवाज़ को यात्रा करने के लिए किसी माध्यम की जरूरत होती है।",category:"science"},
-  {text:"🌈 इंद्रधनुष में आम तौर पर सात रंग बताए जाते हैं।",category:"science"},
-  {text:"🦴 वयस्क इंसान के शरीर में आम तौर पर 206 हड्डियाँ होती हैं।",category:"science"},
-  {text:"👀 मानव आँख कई अलग-अलग रंगों में अंतर कर सकती है।",category:"science"},
-  {text:"🫁 इंसान के फेफड़े शरीर में ऑक्सीजन पहुँचाने में मदद करते हैं।",category:"science"},
-  {text:"☀️ सूर्य की ऊर्जा पृथ्वी पर जीवन के लिए बेहद महत्वपूर्ण है।",category:"science"},
-
-  // 🚀 SPACE
-  {text:"🌍 पृथ्वी सूर्य की परिक्रमा लगभग 365 दिनों में करती है।",category:"space"},
-  {text:"🌙 चंद्रमा पृथ्वी का प्राकृतिक उपग्रह है।",category:"space"},
-  {text:"☀️ सूर्य हमारे सौरमंडल का सबसे बड़ा पिंड है।",category:"space"},
-  {text:"🔴 मंगल ग्रह को लाल ग्रह कहा जाता है।",category:"space"},
-  {text:"🪐 शनि अपने शानदार छल्लों के लिए प्रसिद्ध है।",category:"space"},
-  {text:"🌌 हमारी आकाशगंगा का नाम Milky Way है।",category:"space"},
-  {text:"⭐ सूर्य भी एक तारा है।",category:"space"},
-  {text:"🛰️ अंतरिक्ष में कई कृत्रिम उपग्रह पृथ्वी की परिक्रमा करते हैं।",category:"space"},
-  {text:"🚀 रॉकेट अंतरिक्ष में पहुँचने के लिए बहुत अधिक गति प्राप्त करते हैं।",category:"space"},
-  {text:"🌑 चंद्रमा अपनी रोशनी खुद नहीं बनाता, वह सूर्य का प्रकाश परावर्तित करता है।",category:"space"},
-  {text:"🌀 बृहस्पति सौरमंडल का सबसे बड़ा ग्रह है।",category:"space"},
-  {text:"💫 अंतरिक्ष में अरबों आकाशगंगाएँ होने का अनुमान है।",category:"space"},
-
-  // 🐯 ANIMALS
-  {text:"🐘 हाथी जमीन पर रहने वाले सबसे बड़े स्थलीय जानवरों में से हैं।",category:"animals"},
-  {text:"🐬 डॉल्फिन बहुत बुद्धिमान समुद्री स्तनधारी हैं।",category:"animals"},
-  {text:"🦒 जिराफ़ की गर्दन बहुत लंबी होती है।",category:"animals"},
-  {text:"🐆 चीता जमीन पर सबसे तेज दौड़ने वाले जानवरों में से एक है।",category:"animals"},
-  {text:"🐧 पेंगुइन उड़ नहीं सकते, लेकिन वे बहुत अच्छे तैराक होते हैं।",category:"animals"},
-  {text:"🦋 तितलियाँ अपने पैरों से स्वाद महसूस कर सकती हैं।",category:"animals"},
-  {text:"🐙 ऑक्टोपस के तीन दिल होते हैं।",category:"animals"},
-  {text:"🦇 चमगादड़ उड़ने में सक्षम एकमात्र स्तनधारी हैं।",category:"animals"},
-  {text:"🐢 कुछ कछुए बहुत लंबी उम्र तक जीवित रह सकते हैं।",category:"animals"},
-  {text:"🦉 उल्लू अपने सिर को बहुत बड़े कोण तक घुमा सकते हैं।",category:"animals"},
-  {text:"🐝 मधुमक्खियाँ फूलों से अमृत और पराग एकत्र करती हैं।",category:"animals"},
-  {text:"🦈 शार्क की कई प्रजातियों में लगातार नए दाँत बनते रहते हैं।",category:"animals"},
-  {text:"🐋 ब्लू व्हेल पृथ्वी पर ज्ञात सबसे बड़ा जानवर है।",category:"animals"},
-
-  // 💻 TECHNOLOGY
-  {text:"💻 कंप्यूटर बहुत तेजी से लाखों गणनाएँ कर सकते हैं।",category:"technology"},
-  {text:"🌐 Internet दुनिया भर के कंप्यूटर नेटवर्क को जोड़ता है।",category:"technology"},
-  {text:"📱 पहला मोबाइल फोन आज के स्मार्टफोन से बहुत बड़ा और भारी था।",category:"technology"},
-  {text:"🤖 AI का मतलब Artificial Intelligence यानी कृत्रिम बुद्धिमत्ता है।",category:"technology"},
-  {text:"🔐 मजबूत पासवर्ड ऑनलाइन अकाउंट की सुरक्षा में मदद करता है।",category:"technology"},
-  {text:"☁️ Cloud computing में इंटरनेट के जरिए कंप्यूटिंग संसाधनों का उपयोग किया जाता है।",category:"technology"},
-  {text:"📡 Wi-Fi वायरलेस नेटवर्क के जरिए डिवाइस को इंटरनेट या नेटवर्क से जोड़ सकता है।",category:"technology"},
-  {text:"🖥️ HTML का उपयोग वेब पेज की संरचना बनाने के लिए किया जाता है।",category:"technology"},
-  {text:"🎨 CSS का उपयोग वेबसाइट के डिजाइन और स्टाइल के लिए किया जाता है।",category:"technology"},
-  {text:"⚙️ JavaScript वेबसाइट में इंटरैक्टिव फीचर्स जोड़ सकता है।",category:"technology"},
-  {text:"🐍 Python एक लोकप्रिय प्रोग्रामिंग भाषा है।",category:"technology"},
-  {text:"📦 GitHub का उपयोग code को store और manage करने के लिए किया जाता है।",category:"technology"},
-  {text:"🔎 Search engines इंटरनेट पर जानकारी खोजने में मदद करते हैं।",category:"technology"},
-  {text:"📷 डिजिटल कैमरा तस्वीरों को डिजिटल रूप में रिकॉर्ड करता है।",category:"technology"},
-  {text:"🎮 आधुनिक वीडियो गेम में graphics और physics के लिए कई अलग-अलग technologies इस्तेमाल होती हैं।",category:"technology"},
-
-  // 🌍 MIXED
-  {text:"🌍 पृथ्वी सूर्य से तीसरा ग्रह है।",category:"science"},
-  {text:"🌳 पेड़ प्रकाश संश्लेषण के जरिए अपना भोजन बनाने में मदद करते हैं।",category:"science"},
-  {text:"🌊 समुद्र पृथ्वी की जलवायु को प्रभावित करने में महत्वपूर्ण भूमिका निभाते हैं।",category:"science"},
-  {text:"🌙 चंद्रमा पर पृथ्वी की तुलना में गुरुत्वाकर्षण बहुत कम है।",category:"space"},
-  {text:"🪐 नेपच्यून सूर्य से सबसे दूर स्थित ज्ञात प्रमुख ग्रह है।",category:"space"},
-  {text:"🐨 कोआला ऑस्ट्रेलिया में पाया जाने वाला एक प्रसिद्ध मार्सूपियल है।",category:"animals"},
-  {text:"🦁 शेरों को अक्सर 'जंगल का राजा' कहा जाता है, हालांकि वे सामान्यतः खुले घास के मैदानों में रहते हैं।",category:"animals"},
-  {text:"⌨️ QWERTY दुनिया के सबसे प्रसिद्ध keyboard layouts में से एक है।",category:"technology"},
-  {text:"🔋 बैटरी रासायनिक ऊर्जा को विद्युत ऊर्जा में बदल सकती है।",category:"technology"},
-  {text:"📡 GPS का उपयोग स्थान और दिशा से जुड़ी जानकारी प्राप्त करने के लिए किया जाता है।",category:"technology"},
-  {text:"🌌 तारों की रोशनी को पृथ्वी तक पहुँचने में समय लगता है।",category:"space"},
-  {text:"🐜 चींटियाँ आपस में रासायनिक संकेतों के जरिए संवाद कर सकती हैं।",category:"animals"}
-
-];
-}
-
-];
-
 let likes = 0;
+
+const facts = [
+
+/* 🔬 SCIENCE */
+
+{text:"🧬 इंसान के शरीर में लगभग 37 ट्रिलियन कोशिकाएँ होती हैं।",category:"science"},
+{text:"❤️ इंसान का दिल एक दिन में लगभग 100,000 बार धड़क सकता है।",category:"science"},
+{text:"🦴 वयस्क इंसान के शरीर में आम तौर पर 206 हड्डियाँ होती हैं।",category:"science"},
+{text:"💧 पृथ्वी की सतह का लगभग 71% हिस्सा पानी से ढका है।",category:"science"},
+{text:"🌈 इंद्रधनुष में आम तौर पर सात रंग बताए जाते हैं।",category:"science"},
+{text:"🔊 आवाज़ को यात्रा करने के लिए किसी माध्यम की जरूरत होती है।",category:"science"},
+{text:"🌡️ सामान्य दबाव पर पानी 100°C पर उबलता है।",category:"science"},
+{text:"🌱 पौधे प्रकाश संश्लेषण के जरिए भोजन बनाने में मदद करते हैं।",category:"science"},
+{text:"⚡ बिजली एक प्रकार की ऊर्जा है।",category:"science"},
+{text:"🔬 माइक्रोस्कोप बहुत छोटी चीजों को बड़ा करके देखने में मदद करता है।",category:"science"},
+{text:"🧪 रसायन विज्ञान पदार्थों और उनके बदलावों का अध्ययन करता है।",category:"science"},
+{text:"🌍 पृथ्वी का वायुमंडल कई गैसों का मिश्रण है।",category:"science"},
+
+/* 🚀 SPACE */
+
+{text:"🌍 पृथ्वी सूर्य की परिक्रमा लगभग 365 दिनों में करती है।",category:"space"},
+{text:"🌙 चंद्रमा पृथ्वी का प्राकृतिक उपग्रह है।",category:"space"},
+{text:"☀️ सूर्य हमारे सौरमंडल का तारा है।",category:"space"},
+{text:"🔴 मंगल ग्रह को लाल ग्रह कहा जाता है।",category:"space"},
+{text:"🪐 शनि अपने छल्लों के लिए प्रसिद्ध है।",category:"space"},
+{text:"🌌 हमारी आकाशगंगा का नाम Milky Way है।",category:"space"},
+{text:"⭐ सूर्य एक तारा है।",category:"space"},
+{text:"🛰️ कृत्रिम उपग्रह पृथ्वी की परिक्रमा कर सकते हैं।",category:"space"},
+{text:"🚀 रॉकेट अंतरिक्ष तक पहुँचने के लिए बहुत अधिक गति प्राप्त करते हैं।",category:"space"},
+{text:"🌑 चंद्रमा अपनी रोशनी खुद नहीं बनाता।",category:"space"},
+{text:"🌀 बृहस्पति सौरमंडल का सबसे बड़ा ग्रह है।",category:"space"},
+{text:"💫 अंतरिक्ष में बहुत बड़ी संख्या में आकाशगंगाएँ हैं।",category:"space"},
+
+/* 🐯 ANIMALS */
+
+{text:"🐘 हाथी सबसे बड़े स्थलीय जानवरों में से हैं।",category:"animals"},
+{text:"🐬 डॉल्फिन समुद्री स्तनधारी हैं।",category:"animals"},
+{text:"🦒 जिराफ़ की गर्दन बहुत लंबी होती है।",category:"animals"},
+{text:"🐆 चीता सबसे तेज दौड़ने वाले स्थलीय जानवरों में से एक है।",category:"animals"},
+{text:"🐧 पेंगुइन उड़ नहीं सकते लेकिन अच्छे तैराक होते हैं।",category:"animals"},
+{text:"🦋 तितलियाँ अपने पैरों से स्वाद महसूस कर सकती हैं।",category:"animals"},
+{text:"🐙 ऑक्टोपस के तीन दिल होते हैं।",category:"animals"},
+{text:"🦇 चमगादड़ उड़ने में सक्षम स्तनधारी हैं।",category:"animals"},
+{text:"🐢 कुछ कछुए बहुत लंबी उम्र तक जीवित रह सकते हैं।",category:"animals"},
+{text:"🦉 उल्लू अपने सिर को बहुत बड़े कोण तक घुमा सकते हैं।",category:"animals"},
+{text:"🐝 मधुमक्खियाँ फूलों से अमृत और पराग एकत्र करती हैं।",category:"animals"},
+{text:"🐋 ब्लू व्हेल सबसे बड़ा ज्ञात जानवर है।",category:"animals"},
+
+/* 💻 TECHNOLOGY */
+
+{text:"💻 कंप्यूटर बहुत तेजी से गणनाएँ कर सकते हैं।",category:"technology"},
+{text:"🌐 Internet दुनिया भर के कंप्यूटर नेटवर्क को जोड़ता है।",category:"technology"},
+{text:"📱 आधुनिक स्मार्टफोन में कई अलग-अलग sensors होते हैं।",category:"technology"},
+{text:"🤖 AI का मतलब Artificial Intelligence है।",category:"technology"},
+{text:"🔐 मजबूत पासवर्ड अकाउंट की सुरक्षा में मदद करता है।",category:"technology"},
+{text:"☁️ Cloud computing इंटरनेट के जरिए computing resources उपलब्ध कराती है।",category:"technology"},
+{text:"📡 Wi-Fi wireless network technology है।",category:"technology"},
+{text:"🖥️ HTML वेब पेज की structure बनाने के लिए इस्तेमाल होता है।",category:"technology"},
+{text:"🎨 CSS वेबसाइट का design और style बदलने के लिए इस्तेमाल होता है।",category:"technology"},
+{text:"⚙️ JavaScript वेबसाइट को interactive बनाने में मदद करता है।",category:"technology"},
+{text:"🐍 Python एक लोकप्रिय programming language है।",category:"technology"},
+{text:"📦 GitHub code को store और manage करने के लिए इस्तेमाल किया जाता है।",category:"technology"},
+
+/* 📜 HISTORY */
+
+{text:"🏛️ प्राचीन मिस्र में पिरामिड बनाए गए थे।",category:"history"},
+{text:"📜 कागज के शुरुआती रूपों में से एक का विकास चीन में हुआ था।",category:"history"},
+{text:"🏰 मध्यकाल में यूरोप में कई किले बनाए गए थे।",category:"history"},
+{text:"🧭 कंपास ने यात्रियों और नाविकों को दिशा पहचानने में मदद की।",category:"history"},
+{text:"🚂 भाप इंजन ने औद्योगिक क्रांति में महत्वपूर्ण भूमिका निभाई।",category:"history"},
+{text:"📚 पुस्तकालयों ने ज्ञान को सुरक्षित रखने में महत्वपूर्ण भूमिका निभाई।",category:"history"},
+{text:"🏺 पुरातत्वविद पुराने समय की सभ्यताओं के बारे में वस्तुओं से जानकारी प्राप्त करते हैं।",category:"history"},
+{text:"🗿 प्राचीन सभ्यताओं ने कई विशाल स्मारक बनाए।",category:"history"},
+
+/* 🌎 WORLD */
+
+{text:"🌍 एशिया दुनिया का सबसे बड़ा महाद्वीप है।",category:"world"},
+{text:"🌊 प्रशांत महासागर पृथ्वी का सबसे बड़ा महासागर है।",category:"world"},
+{text:"🏔️ हिमालय दुनिया की सबसे प्रसिद्ध पर्वत श्रृंखलाओं में से एक है।",category:"world"},
+{text:"🌳 अमेज़न वर्षावन दुनिया के सबसे बड़े tropical rainforests में से है।",category:"world"},
+{text:"🗺️ दुनिया में कई अलग-अलग भाषाएँ बोली जाती हैं।",category:"world"},
+{text:"🌎 पृथ्वी पर सात महाद्वीप माने जाते हैं।",category:"world"},
+{text:"🏜️ सहारा दुनिया के सबसे प्रसिद्ध गर्म रेगिस्तानों में से एक है।",category:"world"},
+{text:"🌋 ज्वालामुखी पृथ्वी के अंदर से गर्म पदार्थ बाहर ला सकते हैं।",category:"world"}
+
+];
+
+
+/* SHOW FACT */
 
 function showFact(){
 
- const category =
- document.getElementById("category").value;
+  const category =
+  document.getElementById("category").value;
 
- let filtered = facts;
+  let filtered = facts;
 
- if(category !== "all"){
-   filtered = facts.filter(
-     f => f.category === category
-   );
- }
+  if(category !== "all"){
+    filtered = facts.filter(
+      fact => fact.category === category
+    );
+  }
 
- if(filtered.length === 0){
-   document.getElementById("fact").innerText =
-   "❌ इस category में अभी कोई Fact नहीं है।";
-   return;
- }
+  if(filtered.length === 0){
+    document.getElementById("fact").innerText =
+    "❌ इस category में कोई Fact नहीं है।";
+    return;
+  }
 
- const random =
- Math.floor(Math.random()*filtered.length);
+  const random =
+  Math.floor(Math.random() * filtered.length);
 
- document.getElementById("fact").innerText =
- filtered[random].text;
+  document.getElementById("fact").innerText =
+  filtered[random].text;
 }
+
+
+/* LIKE */
 
 function likeFact(){
 
- likes++;
+  likes++;
 
- document.getElementById("likes").innerText =
- "❤️ Likes: " + likes;
+  document.getElementById("likes").innerText =
+  "❤️ Likes: " + likes;
 }
+
+
+/* COPY */
 
 function copyFact(){
 
- const text =
- document.getElementById("fact").innerText;
+  const text =
+  document.getElementById("fact").innerText;
 
- navigator.clipboard.writeText(text)
- .then(()=>{
-   alert("📋 Fact copied!");
- })
- .catch(()=>{
-   alert("Copy नहीं हो पाया।");
- });
+  navigator.clipboard.writeText(text)
+  .then(()=>{
+    alert("📋 Fact copied!");
+  })
+  .catch(()=>{
+    alert("Copy नहीं हो पाया।");
+  });
 }
+
+
+/* SHARE */
 
 function shareFact(){
 
- const text =
- document.getElementById("fact").innerText;
+  const text =
+  document.getElementById("fact").innerText;
 
- if(navigator.share){
+  if(navigator.share){
 
-   navigator.share({
-     title:"Akash Facts",
-     text:text
-   });
+    navigator.share({
+      title:"Akash Facts",
+      text:text
+    });
 
- }else{
+  }else{
 
-   alert("📤 Share इस browser में उपलब्ध नहीं है।");
- }
+    alert("📤 इस browser में Share उपलब्ध नहीं है।");
+
+  }
 }
+
+
+/* DARK MODE */
 
 function toggleMode(){
 
- document.body.classList.toggle("light");
+  document.body.classList.toggle("dark");
 
 }
+
+
+/* ADD FACT */
 
 function addFact(){
 
- const input =
- document.getElementById("newFact");
+  const input =
+  document.getElementById("newFact");
 
- const text =
- input.value.trim();
+  const text =
+  input.value.trim();
 
- if(text === ""){
+  if(text === ""){
 
-   alert("पहले Fact लिखो!");
+    alert("पहले Fact लिखो!");
 
-   return;
- }
+    return;
+  }
 
- facts.push({
-   text:"💡 " + text,
-   category:"science"
- });
+  facts.push({
+    text:"💡 " + text,
+    category:"science"
+  });
 
- input.value="";
+  input.value="";
 
- alert("✅ आपका Fact जोड़ दिया गया!");
+  alert("✅ आपका Fact जोड़ दिया गया!");
+
+  showFact();
 }
+
+
+/* SEARCH */
 
 function searchFacts(){
 
- const search =
- document.getElementById("searchFact")
- .value
- .toLowerCase()
- .trim();
+  const search =
+  document.getElementById("searchFact")
+  .value
+  .toLowerCase()
+  .trim();
 
- const results =
- facts.filter(f =>
-   f.text.toLowerCase().includes(search)
- );
+  const box =
+  document.getElementById("results");
 
- const box =
- document.getElementById("results");
+  if(search === ""){
 
- if(results.length === 0){
+    box.innerHTML="";
+    return;
 
-   box.innerHTML =
-   "<div class='result'>❌ कोई Fact नहीं मिला!</div>";
+  }
 
-   return;
- }
+  const results =
+  facts.filter(
+    fact => fact.text.toLowerCase().includes(search)
+  );
 
- box.innerHTML =
- results.map(f =>
-   "<div class='result'>💡 "+f.text+"</div>"
- ).join("");
+  if(results.length === 0){
+
+    box.innerHTML =
+    "<div class='result'>❌ कोई Fact नहीं मिला।</div>";
+
+    return;
+  }
+
+  box.innerHTML =
+  results.map(
+    fact => "<div class='result'>" +
+    fact.text +
+    "</div>"
+  ).join("");
+
 }
+
+
+/* FIRST FACT */
+
+showFact();
 
 </script>
 
