@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>🔥 Akash Facts</title>
 
 <style>
@@ -14,104 +13,144 @@
 body{
   margin:0;
   font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#080808,#171717);
+  background:#0b0b0f;
   color:white;
-  text-align:center;
 }
 
 header{
-  padding:25px 15px;
-  background:linear-gradient(135deg,#ff9800,#ff5722);
+  background:linear-gradient(135deg,#ff9800,#ff3d00);
+  text-align:center;
+  padding:45px 20px;
 }
 
 .logo{
-  font-size:42px;
+  font-size:55px;
 }
 
 h1{
-  margin:5px 0;
-  font-size:34px;
+  font-size:42px;
+  margin:10px 0;
 }
 
 .subtitle{
-  margin:8px 0;
-  font-size:16px;
+  font-size:20px;
 }
 
 .container{
   max-width:700px;
   margin:auto;
-  padding:20px;
+  padding:25px 15px;
+}
+
+.card{
+  background:#18181d;
+  border-radius:22px;
+  padding:25px;
+  margin:20px 0;
+  box-shadow:0 8px 25px rgba(0,0,0,.35);
+}
+
+h2{
+  text-align:center;
 }
 
 select,input{
   width:100%;
-  padding:14px;
-  margin:7px 0;
+  padding:15px;
   border:0;
   border-radius:12px;
   font-size:16px;
+  margin-top:10px;
 }
 
-.fact-box{
-  margin:20px 0;
-  padding:30px 20px;
+.fact{
   min-height:150px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#222;
-  border-radius:20px;
-  box-shadow:0 5px 20px #000;
-  font-size:21px;
-  line-height:1.6;
+  text-align:center;
+  font-size:23px;
+  line-height:1.5;
 }
 
 button{
-  padding:13px 18px;
-  margin:5px;
   border:0;
   border-radius:12px;
-  background:#ff9800;
-  color:#111;
+  padding:14px 20px;
+  margin:6px;
   font-size:16px;
   font-weight:bold;
+  background:#ff9800;
+  cursor:pointer;
 }
 
 button:active{
-  transform:scale(.95);
+  transform:scale(.96);
+}
+
+.main-btn{
+  display:block;
+  margin:10px auto;
+  font-size:19px;
+  padding:16px 30px;
 }
 
 .buttons{
-  margin:10px 0;
+  text-align:center;
 }
 
-.card{
-  margin-top:25px;
-  padding:20px;
-  background:#1f1f1f;
-  border-radius:18px;
+.likes{
+  text-align:center;
+  font-size:18px;
 }
 
-.card h2{
-  margin-top:0;
+.result{
+  background:#25252b;
+  padding:15px;
+  border-radius:12px;
+  margin-top:10px;
+  line-height:1.5;
 }
 
 footer{
-  margin-top:30px;
-  padding:20px;
-  background:#111;
+  text-align:center;
+  padding:30px 15px;
   color:#aaa;
+}
+
+.light{
+  background:#f4f4f4;
+  color:#111;
+}
+
+.light .card{
+  background:white;
+}
+
+.light .result{
+  background:#eee;
+}
+
+.mode{
+  position:absolute;
+  right:15px;
+  top:15px;
+  background:rgba(0,0,0,.35);
+  color:white;
 }
 </style>
 </head>
 
 <body>
 
+<button class="mode" onclick="toggleMode()">🌙 Mode</button>
+
 <header>
   <div class="logo">🔥</div>
   <h1>Akash Facts</h1>
-  <div class="subtitle">दुनिया के Interesting Facts एक जगह 🚀</div>
+  <div class="subtitle">
+    दुनिया के Interesting Facts एक जगह 🚀
+  </div>
 </header>
 
 <div class="container">
@@ -128,34 +167,52 @@ footer{
     </select>
   </div>
 
-  <div class="fact-box" id="fact">
-    नीचे दिए गए बटन को दबाकर Amazing Fact देखो! 👇
+  <div class="card">
+    <div class="fact" id="fact">
+      नीचे दिए गए बटन को दबाकर Amazing Fact देखो! 👇
+    </div>
+
+    <button class="main-btn" onclick="showFact()">
+      🚀 Next Fact
+    </button>
+
+    <div class="buttons">
+      <button onclick="likeFact()">❤️ Like</button>
+      <button onclick="copyFact()">📋 Copy</button>
+      <button onclick="shareFact()">📤 Share</button>
+    </div>
+
+    <div class="likes" id="likes">
+      ❤️ Likes: 0
+    </div>
   </div>
-
-  <button onclick="showFact()">🚀 Next Fact</button>
-
-  <div class="buttons">
-    <button onclick="likeFact()">❤️ Like</button>
-    <button onclick="copyFact()">📋 Copy</button>
-    <button onclick="shareFact()">📤 Share</button>
-  </div>
-
-  <p id="likes">❤️ Likes: 0</p>
 
   <div class="card">
     <h2>➕ अपना Fact जोड़ें</h2>
 
-    <input id="newFact" placeholder="अपना Fact लिखें">
+    <input
+      type="text"
+      id="newFact"
+      placeholder="अपना Fact लिखें"
+    >
 
-    <button onclick="addFact()">➕ Add Fact</button>
+    <div class="buttons">
+      <button onclick="addFact()">➕ Add Fact</button>
+    </div>
   </div>
 
   <div class="card">
     <h2>🔍 Fact Search</h2>
 
-    <input id="searchFact" placeholder="Fact खोजें">
+    <input
+      type="text"
+      id="searchFact"
+      placeholder="Fact खोजें..."
+    >
 
-    <button onclick="searchFacts()">🔎 Search</button>
+    <div class="buttons">
+      <button onclick="searchFacts()">🔍 Search</button>
+    </div>
 
     <div id="results"></div>
   </div>
@@ -163,9 +220,8 @@ footer{
 </div>
 
 <footer>
-  🔥 Akash Facts © 2026
-  <br>
-  Learn • Discover • Share 🚀
+  🔥 Akash Facts © 2026<br>
+  Interesting Facts • Science • Space • Technology
 </footer>
 
 <script>
@@ -173,172 +229,184 @@ footer{
 const facts = [
 
 {
-text:"🌍 पृथ्वी सूर्य का चक्कर लगभग 365 दिनों में लगाती है।",
-category:"science"
+ text:"🌍 पृथ्वी सूर्य का एक चक्कर लगभग 365 दिनों में पूरा करती है।",
+ category:"science"
 },
 
 {
-text:"🧠 इंसान का दिमाग बहुत जटिल अंग है और इसमें अरबों neurons होते हैं।",
-category:"science"
+ text:"🧠 मानव मस्तिष्क शरीर के सबसे जटिल अंगों में से एक है।",
+ category:"science"
 },
 
 {
-text:"🌙 चंद्रमा पृथ्वी का प्राकृतिक उपग्रह है।",
-category:"space"
+ text:"🌙 चंद्रमा पृथ्वी का प्राकृतिक उपग्रह है।",
+ category:"space"
 },
 
 {
-text:"☀️ सूर्य हमारे सौरमंडल का तारा है।",
-category:"space"
+ text:"☀️ सूर्य हमारे सौरमंडल का सबसे बड़ा पिंड है।",
+ category:"space"
 },
 
 {
-text:"🐘 हाथी अपनी याददाश्त के लिए प्रसिद्ध हैं।",
-category:"animals"
+ text:"🚀 अंतरिक्ष में हवा न होने के कारण ध्वनि सामान्य तरीके से यात्रा नहीं करती।",
+ category:"space"
 },
 
 {
-text:"🐝 मधुमक्खियाँ फूलों से nectar इकट्ठा करती हैं।",
-category:"animals"
+ text:"🐘 हाथी अपनी याददाश्त के लिए प्रसिद्ध हैं।",
+ category:"animals"
 },
 
 {
-text:"💻 इंटरनेट दुनिया भर के कंप्यूटरों और नेटवर्कों को जोड़ता है।",
-category:"technology"
+ text:"🐝 मधुमक्खियाँ फूलों से nectar इकट्ठा करती हैं।",
+ category:"animals"
 },
 
 {
-text:"📱 स्मार्टफोन आज communication और information के लिए बहुत उपयोगी उपकरण हैं।",
-category:"technology"
+ text:"🐬 डॉल्फिन बहुत बुद्धिमान समुद्री जीवों में गिनी जाती हैं।",
+ category:"animals"
+},
+
+{
+ text:"💻 इंटरनेट दुनिया भर के कंप्यूटर नेटवर्क को जोड़ता है।",
+ category:"technology"
+},
+
+{
+ text:"📱 स्मार्टफोन एक ही डिवाइस में कई तरह के डिजिटल काम कर सकता है।",
+ category:"technology"
 }
 
 ];
 
+let likes = 0;
+
 function showFact(){
 
-const category =
-document.getElementById("category").value;
+ const category =
+ document.getElementById("category").value;
 
-let list = facts;
+ let filtered = facts;
 
-if(category !== "all"){
-list = facts.filter(
-fact => fact.category === category
-);
+ if(category !== "all"){
+   filtered = facts.filter(
+     f => f.category === category
+   );
+ }
+
+ if(filtered.length === 0){
+   document.getElementById("fact").innerText =
+   "❌ इस category में अभी कोई Fact नहीं है।";
+   return;
+ }
+
+ const random =
+ Math.floor(Math.random()*filtered.length);
+
+ document.getElementById("fact").innerText =
+ filtered[random].text;
 }
-
-if(list.length === 0){
-document.getElementById("fact").innerText =
-"❌ इस category में अभी Fact नहीं है!";
-return;
-}
-
-const random =
-Math.floor(Math.random()*list.length);
-
-document.getElementById("fact").innerText =
-list[random].text;
-
-}
-
-let likes = 0;
 
 function likeFact(){
 
-likes++;
+ likes++;
 
-document.getElementById("likes").innerText =
-"❤️ Likes: " + likes;
-
+ document.getElementById("likes").innerText =
+ "❤️ Likes: " + likes;
 }
 
 function copyFact(){
 
-const text =
-document.getElementById("fact").innerText;
+ const text =
+ document.getElementById("fact").innerText;
 
-navigator.clipboard.writeText(text);
-
-alert("📋 Fact copied!");
-
+ navigator.clipboard.writeText(text)
+ .then(()=>{
+   alert("📋 Fact copied!");
+ })
+ .catch(()=>{
+   alert("Copy नहीं हो पाया।");
+ });
 }
 
 function shareFact(){
 
-const text =
-document.getElementById("fact").innerText;
+ const text =
+ document.getElementById("fact").innerText;
 
-if(navigator.share){
+ if(navigator.share){
 
-navigator.share({
-title:"Akash Facts",
-text:text
-});
+   navigator.share({
+     title:"Akash Facts",
+     text:text
+   });
 
-}else{
+ }else{
 
-alert("📤 Share इस browser में उपलब्ध नहीं है।");
-
+   alert("📤 Share इस browser में उपलब्ध नहीं है।");
+ }
 }
+
+function toggleMode(){
+
+ document.body.classList.toggle("light");
 
 }
 
 function addFact(){
 
-const input =
-document.getElementById("newFact");
+ const input =
+ document.getElementById("newFact");
 
-const text =
-input.value.trim();
+ const text =
+ input.value.trim();
 
-if(text === ""){
+ if(text === ""){
 
-alert("पहले Fact लिखो!");
+   alert("पहले Fact लिखो!");
 
-return;
+   return;
+ }
 
-}
+ facts.push({
+   text:"💡 " + text,
+   category:"science"
+ });
 
-facts.push({
-text:"💡 " + text,
-category:"science"
-});
+ input.value="";
 
-input.value="";
-
-alert("✅ आपका Fact जोड़ दिया गया!");
-
+ alert("✅ आपका Fact जोड़ दिया गया!");
 }
 
 function searchFacts(){
 
-const search =
-document.getElementById("searchFact")
-.value
-.toLowerCase()
-.trim();
+ const search =
+ document.getElementById("searchFact")
+ .value
+ .toLowerCase()
+ .trim();
 
-const results =
-facts.filter(fact =>
-fact.text.toLowerCase().includes(search)
-);
+ const results =
+ facts.filter(f =>
+   f.text.toLowerCase().includes(search)
+ );
 
-const box =
-document.getElementById("results");
+ const box =
+ document.getElementById("results");
 
-if(results.length === 0){
+ if(results.length === 0){
 
-box.innerText="❌ कोई Fact नहीं मिला!";
+   box.innerHTML =
+   "<div class='result'>❌ कोई Fact नहीं मिला!</div>";
 
-return;
+   return;
+ }
 
-}
-
-box.innerHTML =
-results
-.map(fact => "💡 " + fact.text)
-.join("<br><br>");
-
+ box.innerHTML =
+ results.map(f =>
+   "<div class='result'>💡 "+f.text+"</div>"
+ ).join("");
 }
 
 </script>
