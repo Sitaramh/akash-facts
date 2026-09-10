@@ -445,6 +445,10 @@ function addFact(){
     text:"💡 " + text,
     category:"science"
   });
+  addDoc(collection(db, "facts"), {
+    text: "💡 " + text,
+    category: "science"
+});
 
   input.value="";
 
