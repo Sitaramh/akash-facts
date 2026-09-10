@@ -521,9 +521,10 @@ showFact();
     measurementId: "G-LS6R659885"
   };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const analytics = getAnalytics(app);
 </script>
 </body>
 </html>
