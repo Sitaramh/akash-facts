@@ -426,7 +426,7 @@ function toggleMode(){
 
 /* ADD FACT */
 
-function addFact(){
+async function addFact(){
 
   const input =
   document.getElementById("newFact");
@@ -445,10 +445,7 @@ function addFact(){
     text:"💡 " + text,
     category:"science"
   });
-  addDoc(collection(db, "facts"), {
-    text: "💡 " + text,
-    category: "science"
-});
+  await window.saveFact(text);
 
   input.value="";
 
@@ -511,6 +508,13 @@ showFact();
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-analytics.js"; 
   import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+  window.saveFact = async function(text) {
+    await addDoc(collection(db, "facts"), {
+        text: "💡 " + text,
+        category: "science"
+    });
+};
+  
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
