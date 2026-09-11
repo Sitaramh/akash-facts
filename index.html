@@ -533,7 +533,7 @@ showFact();
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-  async function loadFacts() {
+  async function loadFacts() {loadFacts();
     const snapshot = await getDocs(collection(db, "facts"));
 
     snapshot.forEach((doc) => {
