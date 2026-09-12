@@ -539,7 +539,7 @@ const db = getFirestore(app);
     category: "science"
   });
 };
-  async function loadFacts() {loadFacts();
+  async function loadFacts(){
     const snapshot = await getDocs(collection(db, "facts"));
 
     snapshot.forEach((doc) => {
