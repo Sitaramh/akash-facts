@@ -533,6 +533,12 @@ showFact();
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+  window.saveFact = async function(text) {
+  await addDoc(collection(db, "facts"), {
+    text: "💡 " + text,
+    category: "science"
+  });
+};
   async function loadFacts() {loadFacts();
     const snapshot = await getDocs(collection(db, "facts"));
 
