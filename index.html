@@ -544,6 +544,11 @@ const provider = new GoogleAuthProvider();
     alert("Login failed: " + error.message);
   }
 };
+  onAuthStateChanged(auth, (user) => {
+  if (user) {
+    alert("Welcome " + user.displayName + " 👋");
+  }
+});
   window.saveFact = async function(text) {
   await addDoc(collection(db, "facts"), {
     text: "💡 " + text,
