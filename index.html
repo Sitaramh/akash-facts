@@ -142,9 +142,10 @@ body.dark footer{
   color:#bbb;
 }
 </style>
-</head>
-
+</header>
 <body>
+
+<button onclick="googleLogin()">🔐 Google Login</button>
 
 <header>
   <h1>🔥 Akash Facts</h1>
@@ -508,6 +509,7 @@ showFact();
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-analytics.js"; 
   import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
   window.saveFact = async function(text) {
     await addDoc(collection(db, "facts"), {
         text: "💡 " + text,
@@ -533,6 +535,15 @@ showFact();
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+  const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+  window.googleLogin = async function() {
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (error) {
+    alert("Login failed: " + error.message);
+  }
+};
   window.saveFact = async function(text) {
   await addDoc(collection(db, "facts"), {
     text: "💡 " + text,
