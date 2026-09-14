@@ -550,7 +550,6 @@ const provider = new GoogleAuthProvider();
   }
 });
 });
-});
   window.saveFact = async function(text) {
   await addDoc(collection(db, "facts"), {
     text: "💡 " + text,
