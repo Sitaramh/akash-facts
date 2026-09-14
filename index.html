@@ -144,6 +144,7 @@ body.dark footer{
 </style>
 </header>
 <body>
+  <div id="userInfo"></div>
 
 <button onclick="googleLogin()">🔐 Google Login</button>
 
@@ -545,9 +546,13 @@ const provider = new GoogleAuthProvider();
     alert("Login failed: " + error.message);
   }
 };
-  onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, (user) => {
+  const userInfo = document.getElementById("userInfo");
+
   if (user) {
-    alert("Welcome " + user.displayName + " 👋");
+    userInfo.innerHTML = "👋 Welcome " + user.displayName;
+  } else {
+    userInfo.innerHTML = "";
   }
 });
   window.saveFact = async function(text) {
