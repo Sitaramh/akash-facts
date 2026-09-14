@@ -538,7 +538,8 @@ const db = getFirestore(app);
   const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
   window.googleLogin = async function() {
-  try {
+  try 
+    {
     await signInWithPopup(auth, provider);
   } catch (error) {
     alert("Login failed: " + error.message);
@@ -548,7 +549,6 @@ const provider = new GoogleAuthProvider();
   if (user) {
     alert("Welcome " + user.displayName + " 👋");
   }
-});
 });
   window.saveFact = async function(text) {
   await addDoc(collection(db, "facts"), {
