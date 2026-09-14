@@ -549,6 +549,7 @@ const provider = new GoogleAuthProvider();
     alert("Welcome " + user.displayName + " 👋");
   }
 });
+});
   window.saveFact = async function(text) {
   await addDoc(collection(db, "facts"), {
     text: "💡 " + text,
