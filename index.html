@@ -147,6 +147,7 @@ body.dark footer{
   <div id="userInfo"></div>
 
 <button onclick="googleLogin()">🔐 Google Login</button>
+  <button onclick="logout()">🚪 Logout</button>
 
 <header>
   <h1>🔥 Akash Facts</h1>
@@ -539,12 +540,16 @@ const db = getFirestore(app);
   const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
   window.googleLogin = async function() {
-  try 
-    {
+  try {
     await signInWithPopup(auth, provider);
   } catch (error) {
     alert("Login failed: " + error.message);
   }
+};
+
+window.logout = async function() {
+  await signOut(auth);
+  alert("👋 Logout हो गया!");
 };
 onAuthStateChanged(auth, (user) => {
   const userInfo = document.getElementById("userInfo");
