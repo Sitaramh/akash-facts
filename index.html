@@ -430,6 +430,10 @@ function toggleMode(){
 /* ADD FACT */
 
 async function addFact(){
+  if (!window.currentUser) {
+  alert("🔐 पहले Google Login करो!");
+  return;
+  }
 
   const input =
   document.getElementById("newFact");
