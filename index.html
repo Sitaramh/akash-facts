@@ -568,7 +568,7 @@ onAuthStateChanged(auth, (user) => {
   window.saveFact = async function(text) {
   await addDoc(collection(db, "facts"), {
     text: "💡 " + text,
-    category: "science"
+    category: "science",
        userName: window.currentUser.displayName,
     userId: window.currentUser.uid
   });
