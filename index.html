@@ -557,13 +557,21 @@ window.logout = async function() {
 };
 onAuthStateChanged(auth, (user) => {
   window.currentUser = user;
+
   const userInfo = document.getElementById("userInfo");
+  const loginBtn = document.getElementById("loginBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
 
   if (user) {
     userInfo.innerHTML = "👋 Welcome " + user.displayName;
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "inline-block";
   } else {
     userInfo.innerHTML = "";
+    loginBtn.style.display = "inline-block";
+    logoutBtn.style.display = "none";
   }
+});
 });
   window.saveFact = async function(text) {
   await addDoc(collection(db, "facts"), {
