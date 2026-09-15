@@ -572,7 +572,6 @@ onAuthStateChanged(auth, (user) => {
     logoutBtn.style.display = "none";
   }
 });
-});
   window.saveFact = async function(text) {
   await addDoc(collection(db, "facts"), {
     text: "💡 " + text,
