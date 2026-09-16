@@ -559,9 +559,21 @@ window.logout = async function() {
   await signOut(auth);
   alert("👋 Logout हो गया!");
 };
-  window.deleteMyFact = async function(id) {
-    window.editMyFact = async function(id, oldText) {
-  const newText = prompt("✏️ Fact को बदलें:", oldText.replace("💡 ", ""));
+window.deleteMyFact = async function(id) {
+  if (!window.currentUser) return;
+
+  await deleteDoc(doc(db, "facts", id));
+
+  alert("🗑️ Fact delete हो गया!");
+
+  loadMyFacts();
+};
+
+window.editMyFact = async function(id, oldText) {
+  const newText = prompt(
+    "✏️ Fact को बदलें:",
+    oldText.replace("💡 ", "")
+  );
 
   if (newText === null) return;
 
@@ -577,15 +589,7 @@ window.logout = async function() {
   alert("✅ Fact update हो गया!");
 
   loadMyFacts();
-};
-  if (!window.currentUser) return;
-
-  await deleteDoc(doc(db, "facts", id));
-
-  alert("🗑️ Fact delete हो गया!");
-
-  loadMyFacts();
-  }
+};  
 onAuthStateChanged(auth, (user) => {
   window.currentUser = user;
 
