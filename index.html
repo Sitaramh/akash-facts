@@ -570,6 +570,7 @@ onAuthStateChanged(auth, (user) => {
     userInfo.innerHTML = "👋 Welcome " + user.displayName;
     loginBtn.style.display = "none";
     logoutBtn.style.display = "inline-block";
+    loadMyFacts();
   } else {
     userInfo.innerHTML = "";
     loginBtn.style.display = "inline-block";
@@ -600,6 +601,38 @@ onAuthStateChanged(auth, (user) => {
 }
 
 window.loadFacts = loadFacts;
+  async function loadMyFacts() {
+  const myFacts = document.getElementById("myFacts");
+
+  if (!window.currentUser) {
+    myFacts.innerHTML = "🔐 पहले Google Login करो।";
+    return;
+  }
+
+  const q = query(
+    collection(db, "facts"),
+    where("userId", "==", window.currentUser.uid)
+  );
+
+  const snapshot = await getDocs(q);
+
+  if (snapshot.empty) {
+    myFacts.innerHTML = "📭 आपने अभी कोई Fact नहीं जोड़ा।";
+    return;
+  }
+
+  myFacts.innerHTML = "";
+
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+
+    myFacts.innerHTML += `
+      <div style="padding:10px; margin:8px 0; border-radius:10px; background:#f1f1f1;">
+        ${data.text}
+      </div>
+    `;
+  });
+  }
   loadFacts();
 const analytics = getAnalytics(app);
 </script>
