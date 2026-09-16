@@ -559,7 +559,7 @@ window.logout = async function() {
   await signOut(auth);
   alert("👋 Logout हो गया!");
 };
-  async function deleteMyFact(id) {
+  window.deleteMyFact = async function(id) {
   if (!window.currentUser) return;
 
   await deleteDoc(doc(db, "facts", id));
