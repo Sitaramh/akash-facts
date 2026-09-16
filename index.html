@@ -518,7 +518,7 @@ showFact();
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-analytics.js"; 
-  import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, getDocs, query, where, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
   import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
   window.saveFact = async function(text) {
     await addDoc(collection(db, "facts"), {
@@ -559,6 +559,15 @@ window.logout = async function() {
   await signOut(auth);
   alert("👋 Logout हो गया!");
 };
+  async function deleteMyFact(id) {
+  if (!window.currentUser) return;
+
+  await deleteDoc(doc(db, "facts", id));
+
+  alert("🗑️ Fact delete हो गया!");
+
+  loadMyFacts();
+  }
 onAuthStateChanged(auth, (user) => {
   window.currentUser = user;
 
@@ -627,10 +636,15 @@ window.loadFacts = loadFacts;
     const data = doc.data();
 
     myFacts.innerHTML += `
-      <div style="padding:10px; margin:8px 0; border-radius:10px; background:#f1f1f1;">
-        ${data.text}
-      </div>
-    `;
+  <div style="padding:10px; margin:8px 0; border-radius:10px; background:#f1f1f1;">
+    <div>${data.text}</div>
+
+    <button onclick="deleteMyFact('${doc.id}')"
+      style="margin-top:8px;">
+      🗑️ Delete
+    </button>
+  </div>
+`;
   });
   }
   loadFacts();
