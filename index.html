@@ -657,11 +657,17 @@ window.loadFacts = loadFacts;
   <div style="padding:10px; margin:8px 0; border-radius:10px; background:#f1f1f1;">
     <div>${data.text}</div>
 
+    <button onclick="editMyFact('${doc.id}', '${data.text.replace(/'/g, "\\'")}')"
+      style="margin-top:8px;">
+      ✏️ Edit
+    </button>
+
     <button onclick="deleteMyFact('${doc.id}')"
       style="margin-top:8px;">
       🗑️ Delete
     </button>
   </div>
+`;
 `;
   });
   }
