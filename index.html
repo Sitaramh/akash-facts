@@ -208,32 +208,35 @@ body.dark .post-actions {
   <h1>🔥 Akash Facts</h1>
   <p>हर दिन कुछ नया और interesting जानिए 🚀</p>
 </header>
-  <div class="social-home">
-
+<div class="social-home">
   <h2>🏠 Akash Facts Feed</h2>
 
-  <div class="post">
-    <div class="post-user">👤 Akash Facts User</div>
-    <p>🌌 क्या आपको पता है? ब्रह्मांड में अरबों galaxies मौजूद हैं!</p>
+  <div id="socialPosts">
 
-    <div class="post-actions">
-      ❤️ Like &nbsp;&nbsp; 💬 Comment &nbsp;&nbsp; 📤 Share
+    <div class="post">
+      <div class="post-user">👤 Akash Facts User</div>
+      <p>🌌 क्या आपको पता है? ब्रह्मांड में अरबों galaxies मौजूद हैं!</p>
+
+      <div class="post-actions">
+        ❤️ Like &nbsp;&nbsp; 💬 Comment &nbsp;&nbsp; 📤 Share
+      </div>
     </div>
+
+    <div class="post">
+      <div class="post-user">👤 Facts Creator</div>
+      <p>🚀 आज का Fact: अंतरिक्ष में आवाज़ सामान्य तरीके से travel नहीं कर सकती।</p>
+
+      <div class="post-actions">
+        ❤️ Like &nbsp;&nbsp; 💬 Comment &nbsp;&nbsp; 📤 Share
+      </div>
+    </div>
+
   </div>
 
-  <div class="post">
-    <div class="post-user">👤 Facts Creator</div>
-    <p>🚀 आज का Fact: अंतरिक्ष में आवाज़ सामान्य तरीके से travel नहीं कर सकती।</p>
-
-    <div class="post-actions">
-      ❤️ Like &nbsp;&nbsp; 💬 Comment &nbsp;&nbsp; 📤 Share
-    </div>
-  </div>
-
-  <button onclick="document.getElementById('newFact').focus()">
+  <button onclick="document.getElementById('socialPostText').focus()">
     ➕ अपना Fact पोस्ट करें
   </button>
-  </div>
+</div>
   <div class="post-box">
   <h2>➕ अपना Fact पोस्ट करें</h2>
 
@@ -733,7 +736,38 @@ window.createSocialPost = async function() {
   input.value = "";
   alert("✅ आपका Post हो गया!");
 };
-  async function loadFacts(){
+async function loadSocialPosts() {
+  const snapshot = await getDocs(collection(db, "facts"));
+  const posts = [];
+
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+
+    if (data.type === "socialPost") {
+      posts.push(data);
+    }
+  });
+
+  const feed = document.getElementById("socialPosts");
+
+  if (!feed) return;
+
+  feed.innerHTML = "";
+
+  posts.reverse().forEach((post) => {
+    feed.innerHTML += `
+      <div class="post">
+        <div class="post-user">👤 ${post.userName || "Facts Creator"}</div>
+        <p>${post.text}</p>
+        <div class="post-actions">
+          ❤️ Like &nbsp;&nbsp; 💬 Comment &nbsp;&nbsp; 📤 Share
+        </div>
+      </div>
+    `;
+  });
+}
+
+async function loadFacts(){
     const snapshot = await getDocs(collection(db, "facts"));
 
     snapshot.forEach((doc) => {
