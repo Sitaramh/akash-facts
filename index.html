@@ -703,6 +703,39 @@ onAuthStateChanged(auth, (user) => {
   await addDoc(collection(db, "facts"), {
     text: "💡 " + text,
     category: "science",
+    userName: window.currentUser.displayName,
+    userId: window.currentUser.uid
+  });
+};
+
+window.createSocialPost = async function() {
+  if (!window.currentUser) {
+    alert("🔐 पहले Google Login करो!");
+    return;
+  }
+
+  const input = document.getElementById("socialPostText");
+  const text = input.value.trim();
+
+  if (text === "") {
+    alert("⚠️ पहले अपना Fact लिखो!");
+    return;
+  }
+
+  await addDoc(collection(db, "facts"), {
+    text: "💡 " + text,
+    category: "science",
+    userName: window.currentUser.displayName,
+    userId: window.currentUser.uid,
+    type: "socialPost"
+  });
+
+  input.value = "";
+  alert("✅ आपका Post हो गया!");
+};
+  await addDoc(collection(db, "facts"), {
+    text: "💡 " + text,
+    category: "science",
        userName: window.currentUser.displayName,
     userId: window.currentUser.uid
   });
