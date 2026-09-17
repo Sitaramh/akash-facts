@@ -141,8 +141,63 @@ body.dark .result{
 body.dark footer{
   color:#bbb;
 }
+  /* 🔥 Akash Facts Social Home */
+.social-home {
+  max-width: 700px;
+  margin: 25px auto;
+  padding: 20px;
+}
+
+.social-home h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.post {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+}
+
+.post-user {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.post p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.post-actions {
+  border-top: 1px solid #ddd;
+  margin-top: 15px;
+  padding-top: 12px;
+  font-size: 16px;
+}
+
+.social-home button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 14px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* 🌙 Dark Mode */
+body.dark .post {
+  background: #1f2937;
+  color: white;
+}
+
+body.dark .post-actions {
+  border-color: #4b5563;
+}
 </style>
-</header>
 <body>
   <div id="userInfo"></div>
 
@@ -177,6 +232,16 @@ body.dark footer{
 
   <button onclick="document.getElementById('newFact').focus()">
     ➕ अपना Fact पोस्ट करें
+  </button>
+  </div>
+  <div class="post-box">
+  <h2>➕ अपना Fact पोस्ट करें</h2>
+
+  <textarea id="socialPostText"
+    placeholder="अपना Fact यहाँ लिखें..."></textarea>
+
+  <button onclick="createSocialPost()">
+    🚀 Post करें
   </button>
   </div>
 
