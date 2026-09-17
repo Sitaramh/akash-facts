@@ -733,13 +733,6 @@ window.createSocialPost = async function() {
   input.value = "";
   alert("✅ आपका Post हो गया!");
 };
-  await addDoc(collection(db, "facts"), {
-    text: "💡 " + text,
-    category: "science",
-       userName: window.currentUser.displayName,
-    userId: window.currentUser.uid
-  });
-};
   async function loadFacts(){
     const snapshot = await getDocs(collection(db, "facts"));
 
