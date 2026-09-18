@@ -731,32 +731,43 @@ async function loadSocialPosts() {
   const snapshot = await getDocs(collection(db, "facts"));
   const posts = [];
 
-  snapshot.forEach((doc) => {
-    const data = doc.data();
+snapshot.forEach((doc) => {
+  const data = doc.data();
 
-    if (data.type === "socialPost") {
-      posts.push(data);
-    }
-  });
+  if (data.type === "socialPost") {
+    posts.push({
+      id: doc.id,
+      ...data
+    });
+  }
+});
 
-  const feed = document.getElementById("socialPosts");
+const feed = document.getElementById("socialPosts");
 
-  if (!feed) return;
+if (!feed) return;
 
-  feed.innerHTML = "";
+feed.innerHTML = "";
 
-  posts.reverse().forEach((post) => {
-    feed.innerHTML += `
-      <div class="post">
-        <div class="post-user">👤 ${post.userName || "Facts Creator"}</div>
-        <p>${post.text}</p>
-        <div class="post-actions">
-          ❤️ Like &nbsp;&nbsp; 💬 Comment &nbsp;&nbsp; 📤 Share
-        </div>
+posts.reverse().forEach((post) => {
+  feed.innerHTML += `
+    <div class="post">
+      <div class="post-user">
+        👤 ${post.userName || "Facts Creator"}
       </div>
-    `;
-  });
-}
+
+      <p>${post.text}</p>
+
+      <div class="post-actions">
+        ❤️ <button onclick="likeSocialPost('${post.id}')">
+          Like (${post.likes || 0})
+        </button>
+
+        &nbsp;&nbsp; 💬 Comment
+        &nbsp;&nbsp; 📤 Share
+      </div>
+    </div>
+  `;
+});
 
 async function loadFacts(){
     const snapshot = await getDocs(collection(db, "facts"));
