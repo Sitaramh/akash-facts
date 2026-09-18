@@ -237,17 +237,6 @@ body.dark .post-actions {
     ➕ अपना Fact पोस्ट करें
   </button>
 </div>
-  <div class="post-box">
-  <h2>➕ अपना Fact पोस्ट करें</h2>
-
-  <textarea id="socialPostText"
-    placeholder="अपना Fact यहाँ लिखें..."></textarea>
-
-  <button onclick="createSocialPost()">
-    🚀 Post करें
-  </button>
-  </div>
-
 <div class="container">
 
   <div class="card">
@@ -735,7 +724,9 @@ window.createSocialPost = async function() {
 
   input.value = "";
   alert("✅ आपका Post हो गया!");
+  await loadSocialPosts();
 };
+  loadSocialPosts();
 async function loadSocialPosts() {
   const snapshot = await getDocs(collection(db, "facts"));
   const posts = [];
