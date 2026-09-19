@@ -1215,5 +1215,87 @@ async function loadSocialPosts(){
     feed.innerHTML="";
 
 
-    posts.forEach(
+    posts.forEach((post) => {
+      const comments = Array.isArray(post.comments)
+        ? post.comments
+        : [];
+
+      feed.innerHTML += `
+        <div class="post">
+          <div class="post-user">
+            👤 ${escapeHtml(post.userName || "Facts Creator")}
+          </div>
+
+          <p>${escapeHtml(post.text || "")}</p>
+
+          <div class="post-actions">
+            ❤️ ${post.likes || 0}
+            &nbsp;&nbsp;
+            💬 ${comments.length}
+            &nbsp;&nbsp;
+            📤 Share
+          </div>
+        </div>
+      `;
+    });
+
+  }catch(error){
+    console.error("Social posts error:", error);
+  }
+}
+
+
+/* START SOCIAL POSTS */
+loadSocialPosts();
+
+
+/* MY FACTS */
+async function loadMyFacts(){
+
+  const box = document.getElementById("myFacts");
+
+  if(!window.currentUser){
+    box.innerHTML = "🔐 पहले Google Login करो।";
+    return;
+  }
+
+  try{
+
+    const q = query(
+      collection(db,"facts"),
+      where("userId","==",window.currentUser.uid)
+    );
+
+    const snapshot = await getDocs(q);
+
+    if(snapshot.empty){
+      box.innerHTML = "📭 आपने अभी कोई Fact नहीं बनाया है।";
+      return;
+    }
+
+    box.innerHTML = "";
+
+    snapshot.forEach((item) => {
+
+      const data = item.data();
+
+      box.innerHTML += `
+        <div class="my-fact">
+          <p>${escapeHtml(data.text || "")}</p>
+        </div>
+      `;
+
+    });
+
+  }catch(error){
+
+    console.error(error);
+
+    box.innerHTML =
+      "❌ Facts load नहीं हुए।";
+
+  }
+}
+
+</script>
      
