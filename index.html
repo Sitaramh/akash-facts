@@ -36,6 +36,18 @@ header p{
   margin:8px 0 0;
 }
 
+#userInfo{
+  text-align:center;
+  padding:10px;
+  font-weight:bold;
+}
+
+#loginBtn,
+#logoutBtn{
+  display:block;
+  margin:10px auto;
+}
+
 .container{
   max-width:700px;
   margin:auto;
@@ -61,7 +73,8 @@ header p{
 }
 
 select,
-input{
+input,
+textarea{
   width:100%;
   padding:14px;
   border:1px solid #ddd;
@@ -69,6 +82,11 @@ input{
   font-size:16px;
   margin-top:8px;
   outline:none;
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
 }
 
 button{
@@ -99,7 +117,7 @@ button:hover{
 }
 
 .section-title{
-  margin-top:25px;
+  margin-top:10px;
 }
 
 .result{
@@ -109,6 +127,76 @@ button:hover{
   margin-top:8px;
 }
 
+/* SOCIAL HOME */
+
+.social-home{
+  max-width:700px;
+  margin:25px auto;
+  padding:20px;
+}
+
+.social-home h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.post{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:18px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.10);
+}
+
+.post-user{
+  font-weight:bold;
+  font-size:18px;
+  margin-bottom:12px;
+}
+
+.post p{
+  font-size:18px;
+  line-height:1.6;
+  word-wrap:break-word;
+}
+
+.post-actions{
+  border-top:1px solid #ddd;
+  margin-top:15px;
+  padding-top:12px;
+}
+
+.post-actions button{
+  background:transparent;
+  color:#e11d48;
+  padding:5px;
+  margin:0;
+}
+
+.comment{
+  background:#f3f4f6;
+  border-radius:10px;
+  padding:8px;
+  margin-top:8px;
+  font-size:14px;
+}
+
+.post-button{
+  width:100%;
+  font-size:18px;
+}
+
+.my-fact{
+  padding:12px;
+  margin:10px 0;
+  border-radius:12px;
+  background:#f1f1f1;
+}
+
+.my-fact button{
+  font-size:13px;
+}
+
 footer{
   text-align:center;
   padding:25px;
@@ -116,150 +204,206 @@ footer{
   color:#666;
 }
 
-/* Dark Mode */
+/* DARK MODE */
 
 body.dark{
   background:#111827;
   color:white;
 }
 
-body.dark .card{
+body.dark .card,
+body.dark .post{
   background:#1f2937;
+  color:white;
 }
 
-body.dark input, 
+body.dark input,
+body.dark textarea,
 body.dark select{
   background:#374151;
   color:white;
   border-color:#4b5563;
 }
 
-body.dark .result{
+body.dark .result,
+body.dark .my-fact,
+body.dark .comment{
   background:#374151;
+  color:white;
+}
+
+body.dark .post-actions{
+  border-color:#4b5563;
 }
 
 body.dark footer{
   color:#bbb;
 }
-  /* 🔥 Akash Facts Social Home */
-.social-home {
-  max-width: 700px;
-  margin: 25px auto;
-  padding: 20px;
-}
 
-.social-home h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
+@media(max-width:600px){
 
-.post {
-  background: white;
-  border-radius: 18px;
-  padding: 18px;
-  margin-bottom: 18px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.10);
-}
+  header h1{
+    font-size:28px;
+  }
 
-.post-user {
-  font-weight: bold;
-  font-size: 18px;
-  margin-bottom: 12px;
-}
+  .container,
+  .social-home{
+    padding:15px;
+  }
 
-.post p {
-  font-size: 18px;
-  line-height: 1.6;
-}
+  .card{
+    padding:18px;
+  }
 
-.post-actions {
-  border-top: 1px solid #ddd;
-  margin-top: 15px;
-  padding-top: 12px;
-  font-size: 16px;
-}
-
-.social-home button {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 14px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-/* 🌙 Dark Mode */
-body.dark .post {
-  background: #1f2937;
-  color: white;
-}
-
-body.dark .post-actions {
-  border-color: #4b5563;
+  #fact{
+    font-size:20px;
+  }
 }
 </style>
-<body>
-  <div id="userInfo"></div>
+</head>
 
-<button id="loginBtn" onclick="googleLogin()">🔐 Google Login</button>
-<button id="logoutBtn" onclick="logout()" style="display:none;">🚪 Logout</button>
+<body>
+
+<div id="userInfo"></div>
+
+<button id="loginBtn" onclick="googleLogin()">
+  🔐 Google Login
+</button>
+
+<button id="logoutBtn"
+        onclick="logout()"
+        style="display:none;">
+  🚪 Logout
+</button>
 
 <header>
   <h1>🔥 Akash Facts</h1>
   <p>हर दिन कुछ नया और interesting जानिए 🚀</p>
 </header>
+
+
+<!-- SOCIAL HOME -->
+
 <div class="social-home">
+
   <h2>🏠 Akash Facts Feed</h2>
 
   <div id="socialPosts">
 
     <div class="post">
-      <div class="post-user">👤 Akash Facts User</div>
-      <p>🌌 क्या आपको पता है? ब्रह्मांड में अरबों galaxies मौजूद हैं!</p>
+
+      <div class="post-user">
+        👤 Akash Facts User
+      </div>
+
+      <p>
+        🌌 क्या आपको पता है? ब्रह्मांड में अरबों galaxies मौजूद हैं!
+      </p>
 
       <div class="post-actions">
-        ❤️ Like &nbsp;&nbsp; 💬 Comment &nbsp;&nbsp; 📤 Share
+        ❤️ Like &nbsp;&nbsp;
+        💬 Comment &nbsp;&nbsp;
+        📤 Share
       </div>
+
     </div>
 
+
     <div class="post">
-      <div class="post-user">👤 Facts Creator</div>
-      <p>🚀 आज का Fact: अंतरिक्ष में आवाज़ सामान्य तरीके से travel नहीं कर सकती।</p>
+
+      <div class="post-user">
+        👤 Facts Creator
+      </div>
+
+      <p>
+        🚀 आज का Fact: अंतरिक्ष में आवाज़ सामान्य तरीके से travel नहीं कर सकती।
+      </p>
 
       <div class="post-actions">
-        ❤️ Like &nbsp;&nbsp; 💬 Comment &nbsp;&nbsp; 📤 Share
+        ❤️ Like &nbsp;&nbsp;
+        💬 Comment &nbsp;&nbsp;
+        📤 Share
       </div>
+
     </div>
 
   </div>
 
-  <button onclick="document.getElementById('socialPostText').focus()">
-    ➕ अपना Fact पोस्ट करें
-  </button>
 </div>
+
+
+<!-- CREATE SOCIAL POST -->
+
 <div class="container">
+
+  <div class="card">
+
+    <h2>➕ अपना Fact पोस्ट करें</h2>
+
+    <textarea
+      id="socialPostText"
+      placeholder="अपना Fact यहाँ लिखें..."
+    ></textarea>
+
+    <button
+      class="post-button"
+      onclick="createSocialPost()">
+      🚀 Post करें
+    </button>
+
+  </div>
+
+
+  <!-- FACT -->
 
   <div class="card">
 
     <h3>🌍 Category चुनें</h3>
 
     <select id="category" onchange="showFact()">
-      <option value="all">🌍 सभी Facts</option>
-      <option value="science">🔬 Science</option>
-      <option value="space">🚀 Space</option>
-      <option value="animals">🐯 Animals</option>
-      <option value="technology">💻 Technology</option>
-      <option value="history">📜 History</option>
-      <option value="world">🌎 World</option>
+
+      <option value="all">
+        🌍 सभी Facts
+      </option>
+
+      <option value="science">
+        🔬 Science
+      </option>
+
+      <option value="space">
+        🚀 Space
+      </option>
+
+      <option value="animals">
+        🐯 Animals
+      </option>
+
+      <option value="technology">
+        💻 Technology
+      </option>
+
+      <option value="history">
+        📜 History
+      </option>
+
+      <option value="world">
+        🌎 World
+      </option>
+
     </select>
+
 
     <div id="fact">
       🔥 Welcome to Akash Facts!
     </div>
 
-    <button class="next" onclick="showFact()">
+
+    <button
+      class="next"
+      onclick="showFact()">
       🚀 Next Fact
     </button>
+
 
     <div class="buttons">
 
@@ -281,12 +425,17 @@ body.dark .post-actions {
 
     </div>
 
-    <p id="likes" style="text-align:center;">
+
+    <p
+      id="likes"
+      style="text-align:center;">
       ❤️ Likes: 0
     </p>
 
   </div>
 
+
+  <!-- ADD FACT -->
 
   <div class="card">
 
@@ -307,6 +456,8 @@ body.dark .post-actions {
   </div>
 
 
+  <!-- SEARCH -->
+
   <div class="card">
 
     <h3 class="section-title">
@@ -324,16 +475,30 @@ body.dark .post-actions {
 
   </div>
 
-</div>
-  <div class="card" id="myFactsCard">
-  <h3 class="section-title">👤 My Facts</h3>
-  <div id="myFacts">Login करके अपने Facts देखें।</div>
+
+  <!-- MY FACTS -->
+
+  <div class="card">
+
+    <h3 class="section-title">
+      👤 My Facts
+    </h3>
+
+    <div id="myFacts">
+      🔐 Login करके अपने Facts देखें।
+    </div>
+
   </div>
+
+</div>
+
 
 <footer>
   🔥 Akash Facts | Learn Something New 🚀
 </footer>
 
+
+<!-- NORMAL JAVASCRIPT -->
 
 <script>
 
@@ -341,7 +506,7 @@ let likes = 0;
 
 const facts = [
 
-/* 🔬 SCIENCE */
+/* SCIENCE */
 
 {text:"🧬 इंसान के शरीर में लगभग 37 ट्रिलियन कोशिकाएँ होती हैं।",category:"science"},
 {text:"❤️ इंसान का दिल एक दिन में लगभग 100,000 बार धड़क सकता है।",category:"science"},
@@ -356,7 +521,7 @@ const facts = [
 {text:"🧪 रसायन विज्ञान पदार्थों और उनके बदलावों का अध्ययन करता है।",category:"science"},
 {text:"🌍 पृथ्वी का वायुमंडल कई गैसों का मिश्रण है।",category:"science"},
 
-/* 🚀 SPACE */
+/* SPACE */
 
 {text:"🌍 पृथ्वी सूर्य की परिक्रमा लगभग 365 दिनों में करती है।",category:"space"},
 {text:"🌙 चंद्रमा पृथ्वी का प्राकृतिक उपग्रह है।",category:"space"},
@@ -371,7 +536,7 @@ const facts = [
 {text:"🌀 बृहस्पति सौरमंडल का सबसे बड़ा ग्रह है।",category:"space"},
 {text:"💫 अंतरिक्ष में बहुत बड़ी संख्या में आकाशगंगाएँ हैं।",category:"space"},
 
-/* 🐯 ANIMALS */
+/* ANIMALS */
 
 {text:"🐘 हाथी सबसे बड़े स्थलीय जानवरों में से हैं।",category:"animals"},
 {text:"🐬 डॉल्फिन समुद्री स्तनधारी हैं।",category:"animals"},
@@ -386,7 +551,7 @@ const facts = [
 {text:"🐝 मधुमक्खियाँ फूलों से अमृत और पराग एकत्र करती हैं।",category:"animals"},
 {text:"🐋 ब्लू व्हेल सबसे बड़ा ज्ञात जानवर है।",category:"animals"},
 
-/* 💻 TECHNOLOGY */
+/* TECHNOLOGY */
 
 {text:"💻 कंप्यूटर बहुत तेजी से गणनाएँ कर सकते हैं।",category:"technology"},
 {text:"🌐 Internet दुनिया भर के कंप्यूटर नेटवर्क को जोड़ता है।",category:"technology"},
@@ -401,7 +566,7 @@ const facts = [
 {text:"🐍 Python एक लोकप्रिय programming language है।",category:"technology"},
 {text:"📦 GitHub code को store और manage करने के लिए इस्तेमाल किया जाता है।",category:"technology"},
 
-/* 📜 HISTORY */
+/* HISTORY */
 
 {text:"🏛️ प्राचीन मिस्र में पिरामिड बनाए गए थे।",category:"history"},
 {text:"📜 कागज के शुरुआती रूपों में से एक का विकास चीन में हुआ था।",category:"history"},
@@ -412,7 +577,7 @@ const facts = [
 {text:"🏺 पुरातत्वविद पुराने समय की सभ्यताओं के बारे में वस्तुओं से जानकारी प्राप्त करते हैं।",category:"history"},
 {text:"🗿 प्राचीन सभ्यताओं ने कई विशाल स्मारक बनाए।",category:"history"},
 
-/* 🌎 WORLD */
+/* WORLD */
 
 {text:"🌍 एशिया दुनिया का सबसे बड़ा महाद्वीप है।",category:"world"},
 {text:"🌊 प्रशांत महासागर पृथ्वी का सबसे बड़ा महासागर है।",category:"world"},
@@ -431,7 +596,7 @@ const facts = [
 function showFact(){
 
   const category =
-  document.getElementById("category").value;
+    document.getElementById("category").value;
 
   let filtered = facts;
 
@@ -443,15 +608,15 @@ function showFact(){
 
   if(filtered.length === 0){
     document.getElementById("fact").innerText =
-    "❌ इस category में कोई Fact नहीं है।";
+      "❌ इस category में कोई Fact नहीं है।";
     return;
   }
 
   const random =
-  Math.floor(Math.random() * filtered.length);
+    Math.floor(Math.random() * filtered.length);
 
   document.getElementById("fact").innerText =
-  filtered[random].text;
+    filtered[random].text;
 }
 
 
@@ -462,7 +627,7 @@ function likeFact(){
   likes++;
 
   document.getElementById("likes").innerText =
-  "❤️ Likes: " + likes;
+    "❤️ Likes: " + likes;
 }
 
 
@@ -471,15 +636,23 @@ function likeFact(){
 function copyFact(){
 
   const text =
-  document.getElementById("fact").innerText;
+    document.getElementById("fact").innerText;
 
-  navigator.clipboard.writeText(text)
-  .then(()=>{
-    alert("📋 Fact copied!");
-  })
-  .catch(()=>{
-    alert("Copy नहीं हो पाया।");
-  });
+  if(navigator.clipboard){
+
+    navigator.clipboard.writeText(text)
+      .then(()=>{
+        alert("📋 Fact copied!");
+      })
+      .catch(()=>{
+        alert("Copy नहीं हो पाया।");
+      });
+
+  }else{
+
+    alert("इस browser में Copy उपलब्ध नहीं है।");
+
+  }
 }
 
 
@@ -488,14 +661,14 @@ function copyFact(){
 function shareFact(){
 
   const text =
-  document.getElementById("fact").innerText;
+    document.getElementById("fact").innerText;
 
   if(navigator.share){
 
     navigator.share({
       title:"Akash Facts",
       text:text
-    });
+    }).catch(()=>{});
 
   }else{
 
@@ -511,41 +684,18 @@ function toggleMode(){
 
   document.body.classList.toggle("dark");
 
+  localStorage.setItem(
+    "darkMode",
+    document.body.classList.contains("dark")
+  );
+
 }
 
 
-/* ADD FACT */
+/* LOAD DARK MODE */
 
-async function addFact(){
-  if (!window.currentUser) {
-  alert("🔐 पहले Google Login करो!");
-  return;
-  }
-
-  const input =
-  document.getElementById("newFact");
-
-  const text =
-  input.value.trim();
-
-  if(text === ""){
-
-    alert("पहले Fact लिखो!");
-
-    return;
-  }
-
-  facts.push({
-    text:"💡 " + text,
-    category:"science"
-  });
-  await window.saveFact(text);
-
-  input.value="";
-
-  alert("✅ आपका Fact जोड़ दिया गया!");
-
-  showFact();
+if(localStorage.getItem("darkMode") === "true"){
+  document.body.classList.add("dark");
 }
 
 
@@ -554,41 +704,53 @@ async function addFact(){
 function searchFacts(){
 
   const search =
-  document.getElementById("searchFact")
-  .value
-  .toLowerCase()
-  .trim();
+    document.getElementById("searchFact")
+      .value
+      .toLowerCase()
+      .trim();
 
   const box =
-  document.getElementById("results");
+    document.getElementById("results");
 
   if(search === ""){
-
     box.innerHTML="";
     return;
-
   }
 
   const results =
-  facts.filter(
-    fact => fact.text.toLowerCase().includes(search)
-  );
+    facts.filter(
+      fact =>
+        fact.text.toLowerCase().includes(search)
+    );
 
   if(results.length === 0){
 
     box.innerHTML =
-    "<div class='result'>❌ कोई Fact नहीं मिला।</div>";
+      "<div class='result'>❌ कोई Fact नहीं मिला।</div>";
 
     return;
   }
 
   box.innerHTML =
-  results.map(
-    fact => "<div class='result'>" +
-    fact.text +
-    "</div>"
-  ).join("");
+    results.map(
+      fact =>
+        "<div class='result'>" +
+        escapeHtml(fact.text) +
+        "</div>"
+    ).join("");
 
+}
+
+
+/* HTML SECURITY */
+
+function escapeHtml(text){
+
+  const div = document.createElement("div");
+
+  div.textContent = text;
+
+  return div.innerHTML;
 }
 
 
@@ -597,238 +759,461 @@ function searchFacts(){
 showFact();
 
 </script>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-analytics.js"; 
-  import { getFirestore, collection, addDoc, getDocs, query, where, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-  window.saveFact = async function(text) {
-    await addDoc(collection(db, "facts"), {
-        text: "💡 " + text,
-        category: "science"
-    });
-};
-  
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyD3QxU0wlO6efmH1cinuH73SzAMjwVIYSk",
-    authDomain: "akash-facts.firebaseapp.com",
-    projectId: "akash-facts",
-    storageBucket: "akash-facts.firebasestorage.app",
-    messagingSenderId: "7676171690",
-    appId: "1:7676171690:web:8f47fa4a96eecdd4d287d3",
-    measurementId: "G-LS6R659885"
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  deleteDoc,
+  doc,
+  updateDoc,
+  increment,
+  arrayUnion
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyD3QxU0wlO6efmH1cinuH73SzAMjwVIYSk",
+
+  authDomain: "akash-facts.firebaseapp.com",
+
+  projectId: "akash-facts",
+
+  storageBucket: "akash-facts.firebasestorage.app",
+
+  messagingSenderId: "7676171690",
+
+  appId: "1:7676171690:web:8f47fa4a96eecdd4d287d3",
+
+  measurementId: "G-LS6R659885"
+
+};
+
+
+/* INITIALIZE */
+
+const app =
+  initializeApp(firebaseConfig);
+
+const db =
+  getFirestore(app);
+
+const auth =
+  getAuth(app);
+
+const provider =
+  new GoogleAuthProvider();
+
+
+/* GOOGLE LOGIN */
+
+window.googleLogin = async function(){
+
+  try{
+
+    await signInWithPopup(
+      auth,
+      provider
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "❌ Login नहीं हुआ:\n" +
+      error.message
+    );
+
+  }
+
+};
+
+
+/* LOGOUT */
+
+window.logout = async function(){
+
+  try{
+
+    await signOut(auth);
+
+    alert("👋 Logout हो गया!");
+
+  }catch(error){
+
+    alert(
+      "❌ Logout error: " +
+      error.message
+    );
+
+  }
+
+};
+
+
+/* AUTH STATE */
+
+onAuthStateChanged(
+  auth,
+  async (user)=>{
+
+    window.currentUser = user;
+
+    const userInfo =
+      document.getElementById("userInfo");
+
+    const loginBtn =
+      document.getElementById("loginBtn");
+
+    const logoutBtn =
+      document.getElementById("logoutBtn");
+
+
+    if(user){
+
+      userInfo.innerHTML =
+        "👋 Welcome " +
+        escapeHtml(user.displayName || "User");
+
+
+      loginBtn.style.display =
+        "none";
+
+      logoutBtn.style.display =
+        "block";
+
+
+      await loadMyFacts();
+
+    }else{
+
+      userInfo.innerHTML =
+        "";
+
+      loginBtn.style.display =
+        "block";
+
+      logoutBtn.style.display =
+        "none";
+
+
+      document.getElementById("myFacts").innerHTML =
+        "🔐 पहले Google Login करो।";
+
+    }
+
+  }
+);
+
+
+/* SAVE NORMAL FACT */
+
+window.saveFact = async function(text){
+
+  if(!window.currentUser){
+
+    throw new Error(
+      "पहले Google Login करें।"
+    );
+
+  }
+
+
+  await addDoc(
+    collection(db,"facts"),
+    {
+
+      text:"💡 " + text,
+
+      category:"science",
+
+      userName:
+        window.currentUser.displayName || "User",
+
+      userId:
+        window.currentUser.uid,
+
+      type:"userFact",
+
+      createdAt:
+        Date.now(),
+
+      likes:0
+
+    }
+  );
+
+};
+
+
+/* ADD FACT */
+
+window.addFact = async function(){
+
+  if(!window.currentUser){
+
+    alert("🔐 पहले Google Login करो!");
+
+    return;
+
+  }
+
+
+  const input =
+    document.getElementById("newFact");
+
+  const text =
+    input.value.trim();
+
+
+  if(text === ""){
+
+    alert("⚠️ पहले Fact लिखो!");
+
+    return;
+
+  }
+
+
+  try{
+
+    facts.push({
+
+      text:"💡 " + text,
+
+      category:"science"
+
+    });
+
+
+    await window.saveFact(text);
+
+
+    input.value="";
+
+    alert(
+      "✅ आपका Fact जोड़ दिया गया!"
+    );
+
+
+    showFact();
+
+    searchFacts();
+
+
+    await loadMyFacts();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "❌ Fact save नहीं हुआ:\n" +
+      error.message
+    );
+
+  }
+
+};
+
+
+/* CREATE SOCIAL POST */
+
+window.createSocialPost =
+  async function(){
+
+    if(!window.currentUser){
+
+      alert(
+        "🔐 पहले Google Login करो!"
+      );
+
+      return;
+
+    }
+
+
+    const input =
+      document.getElementById(
+        "socialPostText"
+      );
+
+
+    const text =
+      input.value.trim();
+
+
+    if(text === ""){
+
+      alert(
+        "⚠️ पहले अपना Fact लिखो!"
+      );
+
+      return;
+
+    }
+
+
+    try{
+
+      await addDoc(
+        collection(db,"facts"),
+        {
+
+          text:"💡 " + text,
+
+          category:"science",
+
+          userName:
+            window.currentUser.displayName ||
+            "Facts Creator",
+
+          userId:
+            window.currentUser.uid,
+
+          type:"socialPost",
+
+          likes:0,
+
+          comments:[],
+
+          createdAt:
+            Date.now()
+
+        }
+      );
+
+
+      input.value="";
+
+      alert(
+        "✅ आपका Post हो गया!"
+      );
+
+
+      await loadSocialPosts();
+
+
+      await loadMyFacts();
+
+    }catch(error){
+
+      console.error(error);
+
+      alert(
+        "❌ Post नहीं हुआ:\n" +
+        error.message
+      );
+
+    }
+
   };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-  const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-  window.googleLogin = async function() {
-  try {
-    await signInWithPopup(auth, provider);
-  } catch (error) {
-    alert("Login failed: " + error.message);
-  }
-};
 
-window.logout = async function() {
-  await signOut(auth);
-  alert("👋 Logout हो गया!");
-};
-window.deleteMyFact = async function(id) {
-  if (!window.currentUser) return;
+/* LOAD SOCIAL POSTS */
 
-  await deleteDoc(doc(db, "facts", id));
+async function loadSocialPosts(){
 
-  alert("🗑️ Fact delete हो गया!");
+  try{
 
-  loadMyFacts();
-};
+    const snapshot =
+      await getDocs(
+        collection(db,"facts")
+      );
 
-window.editMyFact = async function(id, oldText) {
-  const newText = prompt(
-    "✏️ Fact को बदलें:",
-    oldText.replace("💡 ", "")
-  );
 
-  if (newText === null) return;
+    const posts=[];
 
-  if (newText.trim() === "") {
-    alert("⚠️ Fact खाली नहीं हो सकता!");
-    return;
-  }
 
-  await updateDoc(doc(db, "facts", id), {
-    text: "💡 " + newText.trim()
-  });
+    snapshot.forEach(
+      (item)=>{
 
-  alert("✅ Fact update हो गया!");
+        const data =
+          item.data();
 
-  loadMyFacts();
-};  
-onAuthStateChanged(auth, (user) => {
-  window.currentUser = user;
 
-  const userInfo = document.getElementById("userInfo");
-  const loginBtn = document.getElementById("loginBtn");
-  const logoutBtn = document.getElementById("logoutBtn");
+        if(
+          data.type ===
+          "socialPost"
+        ){
 
-  if (user) {
-    userInfo.innerHTML = "👋 Welcome " + user.displayName;
-    loginBtn.style.display = "none";
-    logoutBtn.style.display = "inline-block";
-    loadMyFacts();
-  } else {
-    userInfo.innerHTML = "";
-    loginBtn.style.display = "inline-block";
-    logoutBtn.style.display = "none";
-  }
-});
-  window.saveFact = async function(text) {
-  await addDoc(collection(db, "facts"), {
-    text: "💡 " + text,
-    category: "science",
-    userName: window.currentUser.displayName,
-    userId: window.currentUser.uid
-  });
-};
+          posts.push({
 
-window.createSocialPost = async function() {
-  if (!window.currentUser) {
-    alert("🔐 पहले Google Login करो!");
-    return;
-  }
+            id:item.id,
 
-  const input = document.getElementById("socialPostText");
-  const text = input.value.trim();
+            ...data
 
-  if (text === "") {
-    alert("⚠️ पहले अपना Fact लिखो!");
-    return;
-  }
+          });
 
-  await addDoc(collection(db, "facts"), {
-    text: "💡 " + text,
-    category: "science",
-    userName: window.currentUser.displayName,
-    userId: window.currentUser.uid,
-    type: "socialPost"
-  });
-
-  input.value = "";
-  alert("✅ आपका Post हो गया!");
-  await loadSocialPosts();
-};
-  loadSocialPosts();
-async function loadSocialPosts() {
-  const snapshot = await getDocs(collection(db, "facts"));
-  const posts = [];
-
-snapshot.forEach((doc) => {
-  const data = doc.data();
-
-  if (data.type === "socialPost") {
-    posts.push({
-      id: doc.id,
-      ...data
-    });
-  }
-});
-
-const feed = document.getElementById("socialPosts");
-
-if (!feed) return;
-
-feed.innerHTML = "";
-
-posts.reverse().forEach((post) => {
-  feed.innerHTML += `
-    <div class="post">
-      <div class="post-user">
-        👤 ${post.userName || "Facts Creator"}
-      </div>
-
-      <p>${post.text}</p>
-
-      <div class="post-actions">
-        ❤️ <button onclick="likeSocialPost('${post.id}')">
-          Like (${post.likes || 0})
-        </button>
-
-        &nbsp;&nbsp; 💬 Comment
-        &nbsp;&nbsp; 📤 Share
-      </div>
-    </div>
-  `;
-});
-
-async function loadFacts(){
-    const snapshot = await getDocs(collection(db, "facts"));
-
-    snapshot.forEach((doc) => {
-        const data = doc.data();
-
-        if (!facts.some(f => f.text === data.text)) {
-            facts.push({
-                text: data.text,
-                category: data.category || "science"
-            });
         }
-    });
-}
 
-window.loadFacts = loadFacts;
-  async function loadMyFacts() {
-  const myFacts = document.getElementById("myFacts");
+      }
+    );
 
-  if (!window.currentUser) {
-    myFacts.innerHTML = "🔐 पहले Google Login करो।";
-    return;
-  }
 
-  const q = query(
-    collection(db, "facts"),
-    where("userId", "==", window.currentUser.uid)
-  );
+    posts.sort(
+      (a,b)=>
+        (b.createdAt || 0) -
+        (a.createdAt || 0)
+    );
 
-  const snapshot = await getDocs(q);
 
-  if (snapshot.empty) {
-    myFacts.innerHTML = "📭 आपने अभी कोई Fact नहीं जोड़ा।";
-    return;
-  }
+    const feed =
+      document.getElementById(
+        "socialPosts"
+      );
 
-  myFacts.innerHTML = "";
 
-  snapshot.forEach((doc) => {
-    const data = doc.data();
+    if(!feed) return;
 
-    myFacts.innerHTML += `
-  <div style="padding:10px; margin:8px 0; border-radius:10px; background:#f1f1f1;">
-    <div>${data.text}</div>
 
-    <button onclick="editMyFact('${doc.id}', '${data.text.replace(/'/g, "\\'")}')"
-      style="margin-top:8px;">
-      ✏️ Edit
-    </button>
+    if(posts.length === 0){
 
-    <button onclick="deleteMyFact('${doc.id}')"
-      style="margin-top:8px;">
-      🗑️ Delete
-    </button>
-  </div>
-`;
-  });
-  }
-  loadFacts();
-const analytics = getAnalytics(app);
-</script>
-</body>
-</html>
+      feed.innerHTML = `
+
+        <div class="post">
+
+          <p>
+            📭 अभी कोई नया Social Post नहीं है।
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    feed.innerHTML="";
+
+
+    posts.forEach(
+     
