@@ -1229,12 +1229,20 @@ async function loadSocialPosts(){
           <p>${escapeHtml(post.text || "")}</p>
 
           <div class="post-actions">
-            ❤️ ${post.likes || 0}
-            &nbsp;&nbsp;
-            💬 ${comments.length}
-            &nbsp;&nbsp;
-            📤 Share
-          </div>
+
+  <button onclick="likeSocialPost('${post.id}')">
+    ❤️ ${post.likes || 0}
+  </button>
+
+  <button onclick="addSocialComment('${post.id}')">
+    💬 ${comments.length}
+  </button>
+
+  <button onclick="shareSocialPost('${post.id}')">
+    📤 Share
+  </button>
+
+</div>
         </div>
       `;
     });
