@@ -1251,7 +1251,82 @@ async function loadSocialPosts(){
     console.error("Social posts error:", error);
   }
 }
+// SOCIAL POST ACTIONS
 
+window.likeSocialPost = async function(postId){
+  if(!window.currentUser){
+    alert("🔐 पहले Google Login करो!");
+    return;
+  }
+
+  try{
+    await updateDoc(
+      doc(db, "facts", postId),
+      {
+        likes: increment(1)
+      }
+    );
+
+    await loadSocialPosts();
+
+  }catch(error){
+    console.error(error);
+    alert("❌ Like नहीं हुआ!");
+  }
+};
+
+
+window.addSocialComment = async function(postId){
+  if(!window.currentUser){
+    alert("🔐 पहले Google Login करो!");
+    return;
+  }
+
+  const text = prompt("💬 अपना Comment लिखें:");
+
+  if(!text || text.trim() === "") return;
+
+  try{
+    await updateDoc(
+      doc(db, "facts", postId),
+      {
+        comments: arrayUnion({
+          text: text.trim(),
+          userName: window.currentUser.displayName || "User",
+          userId: window.currentUser.uid,
+          createdAt: Date.now()
+        })
+      }
+    );
+
+    await loadSocialPosts();
+
+  }catch(error){
+    console.error(error);
+    alert("❌ Comment नहीं हुआ!");
+  }
+};
+
+
+window.shareSocialPost = async function(postId){
+  try{
+    const shareData = {
+      title: "🔥 Akash Facts",
+      text: "Interesting Fact 🔥",
+      url: window.location.href
+    };
+
+    if(navigator.share){
+      await navigator.share(shareData);
+    }else{
+      await navigator.clipboard.writeText(window.location.href);
+      alert("📋 Link copied!");
+    }
+
+  }catch(error){
+    console.log("Share cancelled");
+  }
+};
 
 /* START SOCIAL POSTS */
 loadSocialPosts();
