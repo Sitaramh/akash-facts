@@ -475,9 +475,13 @@ body.dark footer{
 
   <div class="category-grid">
 
-    <div class="category-card" style="background:#304ffe;">
-      <span>🧪</span>
-      Science
+    <div class="category-card"
+     style="background:#304ffe;"
+     onclick="showCategory('science')">
+
+  <span>🧪</span>
+  Science
+
     </div>
 
     <div class="category-card" style="background:#ef6c00;">
@@ -847,6 +851,20 @@ const facts = [
 /* SHOW FACT */
 
 function showFact(){
+  function showCategory(categoryName){
+
+  const categorySelect =
+    document.getElementById("category");
+
+  categorySelect.value = categoryName;
+
+  showFact();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+  }
 
   const category =
     document.getElementById("category").value;
