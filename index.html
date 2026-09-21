@@ -850,8 +850,8 @@ const facts = [
 
 /* SHOW FACT */
 
-function showFact(){function showFact(){
-
+function showFact(){
+  function showFact(){
   const category =
     document.getElementById("category").value;
 
@@ -876,7 +876,6 @@ function showFact(){function showFact(){
     filtered[random].text;
 }
 
-
 function showCategory(categoryName){
 
   const categorySelect =
@@ -891,7 +890,6 @@ function showCategory(categoryName){
     behavior: "smooth"
   });
 }
-
 
   const category =
     document.getElementById("category").value;
