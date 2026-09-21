@@ -259,6 +259,133 @@ body.dark footer{
     font-size:20px;
   }
 }
+  /* ===== AKASH FACTS NEW HOME DESIGN ===== */
+
+.home-hero{
+  background:linear-gradient(135deg,#061b3a,#07152f,#28105c);
+  color:white;
+  padding:45px 20px;
+  border-radius:0 0 30px 30px;
+  text-align:center;
+}
+
+.home-hero h1{
+  font-size:42px;
+  margin:10px 0;
+}
+
+.home-hero h1 span{
+  color:#ffb300;
+}
+
+.home-hero p{
+  font-size:20px;
+  margin:12px 0 25px;
+}
+
+.home-search{
+  max-width:900px;
+  margin:25px auto;
+  display:flex;
+  gap:10px;
+}
+
+.home-search input{
+  margin:0;
+  border-radius:30px;
+  padding:16px 20px;
+  background:white;
+}
+
+.home-search button{
+  border-radius:30px;
+  background:#ffb300;
+  color:#111;
+  font-weight:bold;
+  padding:0 25px;
+}
+
+.category-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:20px;
+}
+
+.category-card{
+  padding:20px 10px;
+  border-radius:18px;
+  color:white;
+  text-align:center;
+  font-weight:bold;
+  font-size:16px;
+  box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.category-card span{
+  display:block;
+  font-size:32px;
+  margin-bottom:8px;
+}
+
+.home-section-title{
+  font-size:28px;
+  margin:35px 0 15px;
+}
+
+.trending-card{
+  background:linear-gradient(135deg,#101c50,#28145e);
+  color:white;
+  border-radius:22px;
+  padding:25px;
+  margin-top:15px;
+  box-shadow:0 8px 25px rgba(0,0,0,.18);
+}
+
+.add-fact-banner{
+  background:linear-gradient(135deg,#4f20e8,#d51b9c);
+  color:white;
+  border-radius:22px;
+  padding:25px;
+  margin:30px 0;
+  text-align:center;
+}
+
+.add-fact-banner button{
+  background:white;
+  color:#4f20e8;
+  font-weight:bold;
+  border-radius:25px;
+}
+
+@media(max-width:600px){
+
+  .home-hero h1{
+    font-size:32px;
+  }
+
+  .home-hero p{
+    font-size:17px;
+  }
+
+  .home-search{
+    display:block;
+  }
+
+  .home-search button{
+    width:100%;
+    margin-top:8px;
+    padding:14px;
+  }
+
+  .category-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .home-section-title{
+    font-size:24px;
+  }
+}
 </style>
 </head>
 
