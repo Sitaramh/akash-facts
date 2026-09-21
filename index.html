@@ -851,7 +851,7 @@ const facts = [
 /* SHOW FACT */
 
 function showFact(){
-  function showFact(){
+
   const category =
     document.getElementById("category").value;
 
@@ -875,6 +875,7 @@ function showFact(){
   document.getElementById("fact").innerText =
     filtered[random].text;
 }
+
 
 function showCategory(categoryName){
 
@@ -891,29 +892,6 @@ function showCategory(categoryName){
   });
 }
 
-  const category =
-    document.getElementById("category").value;
-
-  let filtered = facts;
-
-  if(category !== "all"){
-    filtered = facts.filter(
-      fact => fact.category === category
-    );
-  }
-
-  if(filtered.length === 0){
-    document.getElementById("fact").innerText =
-      "❌ इस category में कोई Fact नहीं है।";
-    return;
-  }
-
-  const random =
-    Math.floor(Math.random() * filtered.length);
-
-  document.getElementById("fact").innerText =
-    filtered[random].text;
-}
 
 
 /* LIKE */
