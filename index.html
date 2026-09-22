@@ -4,980 +4,917 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🔥 Akash Facts</title>
+<title>Akash Facts</title>
 
 <style>
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#fff7ed,#ffe4e6);
-  color:#222;
-  min-height:100vh;
-  transition:0.3s;
+  font-family:Arial, sans-serif;
+  background:#f4f7fb;
+  color:#151922;
+  transition:.3s;
 }
 
-header{
-  background:linear-gradient(135deg,#ff6b00,#e11d48);
-  color:white;
-  text-align:center;
-  padding:30px 15px;
+body.dark{
+  background:#080b12;
+  color:#fff;
 }
 
-header h1{
-  margin:0;
-  font-size:32px;
-}
-
-header p{
-  margin:8px 0 0;
-}
-
-#userInfo{
-  text-align:center;
-  padding:10px;
-  font-weight:bold;
-}
-
-#loginBtn,
-#logoutBtn{
-  display:block;
-  margin:10px auto;
-}
-
-.container{
-  max-width:700px;
-  margin:auto;
-  padding:20px;
-}
-
-.card{
-  background:white;
-  border-radius:20px;
-  padding:25px;
-  margin-top:20px;
-  box-shadow:0 8px 25px rgba(0,0,0,0.12);
-}
-
-#fact{
-  font-size:22px;
-  line-height:1.6;
-  text-align:center;
-  min-height:120px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-select,
+button,
 input,
 textarea{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  font-size:16px;
-  margin-top:8px;
-  outline:none;
-}
-
-textarea{
-  min-height:110px;
-  resize:vertical;
+  font-family:inherit;
 }
 
 button{
-  border:0;
-  border-radius:12px;
-  padding:13px 18px;
-  margin:6px 3px;
-  font-size:15px;
   cursor:pointer;
-  background:#ff6b00;
+}
+
+.container{
+  width:min(1180px,94%);
+  margin:auto;
+}
+
+/* NAVBAR */
+
+.navbar{
+  margin:15px auto;
+  padding:14px 18px;
+  border-radius:20px;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+.dark .navbar{
+  background:#151922;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:900;
+}
+
+.logo span{
+  color:#304ffe;
+}
+
+.nav-actions{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.nav-btn{
+  border:0;
+  padding:10px 14px;
+  border-radius:12px;
+  background:#eef1ff;
+  font-weight:bold;
+}
+
+.login-btn{
+  background:#304ffe;
   color:white;
 }
 
-button:hover{
-  opacity:0.85;
-}
+/* HERO */
 
-.buttons{
+.hero{
+  margin-top:20px;
+  padding:55px 20px;
   text-align:center;
-  margin-top:15px;
+  border-radius:30px;
+  color:white;
+  background:
+    radial-gradient(circle at top left,#00b0ff,transparent 35%),
+    linear-gradient(135deg,#304ffe,#7c4dff,#111b5c);
+  box-shadow:0 18px 50px rgba(48,79,254,.25);
 }
 
-.next{
-  width:100%;
+.hero h1{
+  font-size:clamp(32px,7vw,58px);
+  font-weight:900;
+}
+
+.hero p{
+  margin:14px 0 28px;
   font-size:18px;
-  padding:16px;
-  background:#e11d48;
 }
 
-.section-title{
-  margin-top:10px;
+.search-box{
+  width:min(700px,100%);
+  margin:auto;
+  display:flex;
+  background:white;
+  padding:7px;
+  border-radius:17px;
+}
+
+.search-box input{
+  flex:1;
+  border:0;
+  outline:0;
+  padding:14px;
+  font-size:16px;
+  color:#222;
+}
+
+.search-box button{
+  border:0;
+  border-radius:12px;
+  padding:0 20px;
+  background:#304ffe;
+  color:white;
+  font-weight:bold;
+}
+
+#results{
+  width:min(700px,100%);
+  margin:10px auto 0;
+  text-align:left;
 }
 
 .result{
-  background:#fff7ed;
+  background:white;
+  color:#222;
   padding:12px;
+  margin-top:6px;
   border-radius:10px;
-  margin-top:8px;
 }
 
-/* SOCIAL HOME */
+/* USER */
 
-.social-home{
-  max-width:700px;
-  margin:25px auto;
-  padding:20px;
-}
-
-.social-home h2{
+.user-box{
+  margin-top:15px;
   text-align:center;
-  margin-bottom:20px;
+  font-size:14px;
+}
+
+.user-box img{
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  vertical-align:middle;
+  margin-right:6px;
+}
+
+/* STATS */
+
+.stats{
+  margin:22px 0;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.stat{
+  padding:22px;
+  text-align:center;
+  border-radius:20px;
+  background:white;
+  box-shadow:0 7px 25px rgba(0,0,0,.07);
+}
+
+.dark .stat{
+  background:#151922;
+}
+
+.stat b{
+  display:block;
+  font-size:28px;
+  margin-bottom:5px;
+}
+
+/* SECTION */
+
+.section{
+  margin-top:30px;
+}
+
+.section-title{
+  margin-bottom:15px;
+  font-size:24px;
+}
+
+/* CATEGORIES */
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.category{
+  min-height:125px;
+  padding:20px;
+  border-radius:22px;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-weight:bold;
+  transition:.2s;
+  box-shadow:0 9px 25px rgba(0,0,0,.12);
+}
+
+.category:hover{
+  transform:translateY(-5px);
+}
+
+.category span{
+  font-size:38px;
+  margin-bottom:8px;
+}
+
+.science{background:#304ffe}
+.space{background:#512da8}
+.animals{background:#00897b}
+.technology{background:#0277bd}
+.history{background:#6d4c41}
+.world{background:#1565c0}
+.india{background:#ef6c00}
+.interesting{background:#c2185b}
+
+/* FACT */
+
+.fact-card{
+  margin-top:20px;
+  padding:25px;
+  border-radius:24px;
+  background:white;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+.dark .fact-card{
+  background:#151922;
+}
+
+.fact-category{
+  color:#304ffe;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.fact-text{
+  font-size:20px;
+  line-height:1.6;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:20px;
+}
+
+.action{
+  border:0;
+  padding:10px 14px;
+  border-radius:12px;
+  background:#eef1ff;
+  font-weight:bold;
+}
+
+/* ADD FACT */
+
+.add-box{
+  padding:25px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#00a884,#7bc043);
+  color:white;
+}
+
+.add-box h2{
+  margin-bottom:8px;
+}
+
+.add-row{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.add-row input{
+  flex:1;
+  border:0;
+  outline:0;
+  border-radius:12px;
+  padding:14px;
+}
+
+.add-row button{
+  border:0;
+  border-radius:12px;
+  padding:0 18px;
+  font-weight:bold;
+}
+
+/* COMMUNITY */
+
+.post-create{
+  background:white;
+  padding:20px;
+  border-radius:22px;
+  box-shadow:0 7px 25px rgba(0,0,0,.07);
+}
+
+.dark .post-create{
+  background:#151922;
+}
+
+.post-create textarea{
+  width:100%;
+  min-height:100px;
+  resize:vertical;
+  padding:13px;
+  border-radius:13px;
+  border:1px solid #ddd;
+  outline:0;
+}
+
+.post-create button{
+  margin-top:10px;
+  border:0;
+  padding:11px 18px;
+  border-radius:12px;
+  background:#304ffe;
+  color:white;
+  font-weight:bold;
 }
 
 .post{
-  background:white;
-  border-radius:18px;
+  margin-top:15px;
   padding:18px;
-  margin-bottom:18px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.10);
+  border-radius:20px;
+  background:white;
+  box-shadow:0 6px 20px rgba(0,0,0,.06);
+}
+
+.dark .post{
+  background:#151922;
 }
 
 .post-user{
   font-weight:bold;
-  font-size:18px;
-  margin-bottom:12px;
-}
-
-.post p{
-  font-size:18px;
-  line-height:1.6;
-  word-wrap:break-word;
+  margin-bottom:10px;
 }
 
 .post-actions{
-  border-top:1px solid #ddd;
+  display:flex;
+  gap:8px;
   margin-top:15px;
-  padding-top:12px;
+  flex-wrap:wrap;
 }
 
 .post-actions button{
-  background:transparent;
-  color:#e11d48;
-  padding:5px;
-  margin:0;
-}
-
-.comment{
-  background:#f3f4f6;
+  border:0;
+  padding:8px 12px;
   border-radius:10px;
-  padding:8px;
-  margin-top:8px;
-  font-size:14px;
+  background:#eef1ff;
 }
 
-.post-button{
-  width:100%;
-  font-size:18px;
-}
+/* MY FACTS */
 
 .my-fact{
-  padding:12px;
-  margin:10px 0;
-  border-radius:12px;
-  background:#f1f1f1;
-}
-
-.my-fact button{
-  font-size:13px;
-}
-
-footer{
-  text-align:center;
-  padding:25px;
-  margin-top:20px;
-  color:#666;
-}
-
-/* DARK MODE */
-
-body.dark{
-  background:#111827;
-  color:white;
-}
-
-body.dark .card,
-body.dark .post{
-  background:#1f2937;
-  color:white;
-}
-
-body.dark input,
-body.dark textarea,
-body.dark select{
-  background:#374151;
-  color:white;
-  border-color:#4b5563;
-}
-
-body.dark .result,
-body.dark .my-fact,
-body.dark .comment{
-  background:#374151;
-  color:white;
-}
-
-body.dark .post-actions{
-  border-color:#4b5563;
-}
-
-body.dark footer{
-  color:#bbb;
-}
-
-@media(max-width:600px){
-
-  header h1{
-    font-size:28px;
-  }
-
-  .container,
-  .social-home{
-    padding:15px;
-  }
-
-  .card{
-    padding:18px;
-  }
-
-  #fact{
-    font-size:20px;
-  }
-}
-  /* ===== AKASH FACTS NEW HOME DESIGN ===== */
-
-.home-hero{
-  background:linear-gradient(135deg,#061b3a,#07152f,#28105c);
-  color:white;
-  padding:45px 20px;
-  border-radius:0 0 30px 30px;
-  text-align:center;
-}
-
-.home-hero h1{
-  font-size:42px;
-  margin:10px 0;
-}
-
-.home-hero h1 span{
-  color:#ffb300;
-}
-
-.home-hero p{
-  font-size:20px;
-  margin:12px 0 25px;
-}
-
-.home-search{
-  max-width:900px;
-  margin:25px auto;
-  display:flex;
-  gap:10px;
-}
-
-.home-search input{
-  margin:0;
-  border-radius:30px;
-  padding:16px 20px;
+  margin-top:10px;
+  padding:15px;
+  border-radius:15px;
   background:white;
 }
 
-.home-search button{
-  border-radius:30px;
-  background:#ffb300;
-  color:#111;
-  font-weight:bold;
-  padding:0 25px;
+.dark .my-fact{
+  background:#151922;
 }
 
-.category-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-  margin-top:20px;
-}
+/* FOOTER */
 
-.category-card{
-  padding:20px 10px;
-  border-radius:18px;
-  color:white;
+.footer{
   text-align:center;
-  font-weight:bold;
-  font-size:16px;
-  box-shadow:0 5px 15px rgba(0,0,0,.2);
+  padding:40px 10px;
+  margin-top:40px;
+  opacity:.7;
 }
 
-.category-card span{
-  display:block;
-  font-size:32px;
-  margin-bottom:8px;
-}
+/* MOBILE */
 
-.home-section-title{
-  font-size:28px;
-  margin:35px 0 15px;
-}
+@media(max-width:800px){
 
-.trending-card{
-  background:linear-gradient(135deg,#101c50,#28145e);
-  color:white;
-  border-radius:22px;
-  padding:25px;
-  margin-top:15px;
-  box-shadow:0 8px 25px rgba(0,0,0,.18);
-}
-
-.add-fact-banner{
-  background:linear-gradient(135deg,#4f20e8,#d51b9c);
-  color:white;
-  border-radius:22px;
-  padding:25px;
-  margin:30px 0;
-  text-align:center;
-}
-
-.add-fact-banner button{
-  background:white;
-  color:#4f20e8;
-  font-weight:bold;
-  border-radius:25px;
-}
-
-@media(max-width:600px){
-
-  .home-hero h1{
-    font-size:32px;
-  }
-
-  .home-hero p{
-    font-size:17px;
-  }
-
-  .home-search{
-    display:block;
-  }
-
-  .home-search button{
-    width:100%;
-    margin-top:8px;
-    padding:14px;
-  }
-
-  .category-grid{
+  .categories{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .home-section-title{
-    font-size:24px;
+}
+
+@media(max-width:500px){
+
+  .navbar{
+    padding:11px;
   }
-.add-fact-banner{
-  background:linear-gradient(135deg,#ff7a00,#ff1744);
-  color:white;
-  padding:30px 20px;
-  margin:30px 0;
-  border-radius:25px;
-  text-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,.18);
-}
 
-.add-fact-banner h2{
-  font-size:28px;
-  margin:0 0 10px;
-}
+  .logo{
+    font-size:18px;
+  }
 
-.add-fact-banner p{
-  font-size:17px;
-  line-height:1.6;
-  margin:10px 0 20px;
-}
+  .nav-btn{
+    padding:8px;
+  }
 
-.add-fact-banner button{
-  background:white;
-  color:#ff4b00;
-  border:none;
-  padding:14px 25px;
-  border-radius:25px;
-  font-size:17px;
-  font-weight:bold;
+  .hero{
+    padding:40px 14px;
+  }
+
+  .search-box{
+    flex-direction:column;
+    gap:7px;
+  }
+
+  .search-box button{
+    padding:12px;
+  }
+
+  .stats{
+    gap:8px;
+  }
+
+  .stat{
+    padding:15px 5px;
+    font-size:12px;
+  }
+
+  .stat b{
+    font-size:22px;
+  }
+
+  .categories{
+    gap:9px;
+  }
+
+  .category{
+    min-height:105px;
+  }
+
+  .add-row{
+    flex-direction:column;
+  }
+
+  .add-row button{
+    padding:12px;
+  }
+
 }
 </style>
 </head>
 
 <body>
 
-<div id="userInfo"></div>
+<div class="container">
 
-<button id="loginBtn" onclick="googleLogin()">
-  🔐 Google Login
-</button>
+<!-- NAVBAR -->
 
-<button id="logoutBtn"
-        onclick="logout()"
-        style="display:none;">
-  🚪 Logout
-</button>
+<nav class="navbar">
 
-<header>
-  <h1>🔥 Akash Facts</h1>
-  <p>हर दिन कुछ नया और interesting जानिए 🚀</p>
-</header>
-  <!-- NEW HOME HERO -->
-
-<section class="home-hero">
-
-  <div>
-    🚀 Explore • Learn • Grow
+  <div class="logo">
+    🔥 <span>Akash</span> Facts
   </div>
 
-  <h1>
-    Welcome to <span>Akash Facts</span>
-  </h1>
+  <div class="nav-actions">
+
+    <button
+      class="nav-btn"
+      onclick="toggleMode()">
+      🌙
+    </button>
+
+    <button
+      id="loginButton"
+      class="nav-btn login-btn"
+      onclick="loginGoogle()">
+      🔐 Google Login
+    </button>
+
+  </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <h1>Welcome to Akash Facts 🚀</h1>
 
   <p>
-    हर दिन कुछ नया और interesting जानिए 🚀
+    हर दिन कुछ नया और interesting जानिए!
   </p>
 
-  <div class="home-search">
-    <input
-      type="text"
-      id="homeSearch"
-      placeholder="Search facts... जैसे Science, India, Space..."
-    >
+  <div class="search-box">
 
-    <button onclick="searchHomeFact()">
-      🔎 Search
+    <input
+      id="searchFact"
+      type="text"
+      placeholder="🔍 कोई Fact खोजें..."
+      oninput="searchFacts()">
+
+    <button onclick="searchFacts()">
+      Search
     </button>
+
+  </div>
+
+  <div id="results"></div>
+
+  <div id="userBox" class="user-box">
+    🔐 Login करके Community Features इस्तेमाल करें
   </div>
 
 </section>
-  <!-- EXPLORE CATEGORIES -->
 
-<section class="home-section">
 
-  <h2 class="home-section-title">
-    🔥 Explore Categories
+<!-- STATS -->
+
+<div class="stats">
+
+  <div class="stat">
+    <b>💡</b>
+    Interesting Facts
+  </div>
+
+  <div class="stat">
+    <b>🌎</b>
+    Multiple Categories
+  </div>
+
+  <div class="stat">
+    <b>🚀</b>
+    Akash Facts
+  </div>
+
+</div>
+
+
+<!-- CATEGORIES -->
+
+<section class="section">
+
+  <h2 class="section-title">
+    📚 Explore Categories
   </h2>
 
-  <div class="category-grid">
+  <div class="categories">
 
-    <div class="category-card"
-     style="background:#304ffe;"
-     onclick="showCategory('science')"> 
-  <span>🧪</span>
-  Science
-
+    <div
+      class="category science"
+      onclick="showCategory('science')">
+      <span>🧪</span>
+      Science
     </div>
 
-    <div class="category-card" style="background:#ef6c00;">
-      <span>🏛️</span>
-      History
-    </div>
-
-    <div class="category-card" style="background:#00838f;">
-      <span>💻</span>
-      Technology
-    </div>
-
-    <div class="category-card" style="background:#8e24aa;">
+    <div
+      class="category space"
+      onclick="showCategory('space')">
       <span>🚀</span>
       Space
     </div>
 
-    <div class="category-card" style="background:#2e7d32;">
-      <span>🐾</span>
+    <div
+      class="category animals"
+      onclick="showCategory('animals')">
+      <span>🐯</span>
       Animals
     </div>
 
-    <div class="category-card" style="background:#1565c0;">
-      <span>🌍</span>
+    <div
+      class="category technology"
+      onclick="showCategory('technology')">
+      <span>💻</span>
+      Technology
+    </div>
+
+    <div
+      class="category history"
+      onclick="showCategory('history')">
+      <span>🏛️</span>
+      History
+    </div>
+
+    <div
+      class="category world"
+      onclick="showCategory('world')">
+      <span>🌎</span>
       World
     </div>
 
-    <div class="category-card" style="background:#c2185b;">
+    <div
+      class="category india"
+      onclick="showCategory('india')">
       <span>🇮🇳</span>
       India
     </div>
 
-    <div class="category-card" style="background:#6a1b9a;">
-      <span>💡</span>
+    <div
+      class="category interesting"
+      onclick="showCategory('interesting')">
+      <span>🤯</span>
       Interesting
     </div>
 
   </div>
 
 </section>
-  <!-- ADD FACT BANNER -->
-<section class="add-fact-banner">
 
-  <h2>➕ Apna Fact Post Karein</h2>
 
-  <p>
-    💡 Aap bhi interesting Fact share karke
-    Akash Facts community ka hissa banein!
-  </p>
+<!-- TODAY FACT -->
 
-  <button onclick="document.getElementById('factText').focus()">
-    ✨ Fact Add Karein
-  </button>
+<section class="section">
+
+  <h2 class="section-title">
+    💡 Today's Fact
+  </h2>
+
+  <div class="fact-card">
+
+    <div
+      id="factCategory"
+      class="fact-category">
+      Science
+    </div>
+
+    <div
+      id="fact"
+      class="fact-text">
+      Fact loading...
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="action"
+        onclick="showFact()">
+        🔄 Next Fact
+      </button>
+
+      <button
+        class="action"
+        onclick="likeFact()">
+        ❤️ Like
+      </button>
+
+      <button
+        class="action"
+        onclick="copyFact()">
+        📋 Copy
+      </button>
+
+      <button
+        class="action"
+        onclick="shareFact()">
+        📤 Share
+      </button>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- SOCIAL HOME -->
+<!-- ADD FACT -->
 
-<div class="social-home">
+<section class="section">
 
-  <h2>🏠 Akash Facts Feed</h2>
+  <div class="add-box">
 
-  <div id="socialPosts">
+    <h2>➕ अपना Fact जोड़ें</h2>
 
-    <div class="post">
+    <p>
+      अपना interesting knowledge Akash Facts पर share करें।
+    </p>
 
-      <div class="post-user">
-        👤 Akash Facts User
-      </div>
+    <div class="add-row">
 
-      <p>
-        🌌 क्या आपको पता है? ब्रह्मांड में अरबों galaxies मौजूद हैं!
-      </p>
+      <input
+        id="newFact"
+        type="text"
+        placeholder="अपना Fact लिखें...">
 
-      <div class="post-actions">
-        ❤️ Like &nbsp;&nbsp;
-        💬 Comment &nbsp;&nbsp;
-        📤 Share
-      </div>
-
-    </div>
-
-
-    <div class="post">
-
-      <div class="post-user">
-        👤 Facts Creator
-      </div>
-
-      <p>
-        🚀 आज का Fact: अंतरिक्ष में आवाज़ सामान्य तरीके से travel नहीं कर सकती।
-      </p>
-
-      <div class="post-actions">
-        ❤️ Like &nbsp;&nbsp;
-        💬 Comment &nbsp;&nbsp;
-        📤 Share
-      </div>
+      <button onclick="addFact()">
+        🚀 Add Fact
+      </button>
 
     </div>
 
   </div>
 
-</div>
+</section>
 
 
-<!-- CREATE SOCIAL POST -->
+<!-- COMMUNITY -->
 
-<div class="container">
+<section class="section">
 
-  <div class="card">
+  <h2 class="section-title">
+    🌐 Community Facts
+  </h2>
 
-    <h2>➕ अपना Fact पोस्ट करें</h2>
+  <div class="post-create">
 
     <textarea
       id="socialPostText"
-      placeholder="अपना Fact यहाँ लिखें..."
-    ></textarea>
+      placeholder="अपना Fact Community के साथ share करें...">
+    </textarea>
 
-    <button
-      class="post-button"
-      onclick="createSocialPost()">
-      🚀 Post करें
+    <button onclick="createSocialPost()">
+      📢 Post Fact
     </button>
 
   </div>
 
-
-  <!-- FACT -->
-
-  <div class="card">
-
-    <h3>🌍 Category चुनें</h3>
-
-    <select id="category" onchange="showFact()">
-
-      <option value="all">
-        🌍 सभी Facts
-      </option>
-
-      <option value="science">
-        🔬 Science
-      </option>
-
-      <option value="space">
-        🚀 Space
-      </option>
-
-      <option value="animals">
-        🐯 Animals
-      </option>
-
-      <option value="technology">
-        💻 Technology
-      </option>
-
-      <option value="history">
-        📜 History
-      </option>
-
-      <option value="world">
-        🌎 World
-      </option>
-
-    </select>
-
-
-    <div id="fact">
-      🔥 Welcome to Akash Facts!
-    </div>
-
-
-    <button
-      class="next"
-      onclick="showFact()">
-      🚀 Next Fact
-    </button>
-
-
-    <div class="buttons">
-
-      <button onclick="likeFact()">
-        ❤️ Like
-      </button>
-
-      <button onclick="copyFact()">
-        📋 Copy
-      </button>
-
-      <button onclick="shareFact()">
-        📤 Share
-      </button>
-
-      <button onclick="toggleMode()">
-        🌙 Mode
-      </button>
-
-    </div>
-
-
-    <p
-      id="likes"
-      style="text-align:center;">
-      ❤️ Likes: 0
+  <div id="socialPosts">
+    <p style="margin-top:15px">
+      Community loading...
     </p>
-
   </div>
 
+</section>
 
-  <!-- ADD FACT -->
 
-  <div class="card">
+<!-- MY FACTS -->
 
-    <h3 class="section-title">
-      ➕ अपना Fact जोड़ें
-    </h3>
+<section class="section">
 
-    <input
-      id="newFact"
-      type="text"
-      placeholder="अपना interesting fact लिखें..."
-    >
+  <h2 class="section-title">
+    👤 My Facts
+  </h2>
 
-    <button onclick="addFact()">
-      ➕ Add Fact
-    </button>
-
+  <div id="myFacts">
+    🔐 Google Login करें।
   </div>
 
-
-  <!-- SEARCH -->
-
-  <div class="card">
-
-    <h3 class="section-title">
-      🔍 Fact Search
-    </h3>
-
-    <input
-      id="searchFact"
-      type="text"
-      placeholder="Fact खोजें..."
-      oninput="searchFacts()"
-    >
-
-    <div id="results"></div>
-
-  </div>
+</section>
 
 
-  <!-- MY FACTS -->
-
-  <div class="card">
-
-    <h3 class="section-title">
-      👤 My Facts
-    </h3>
-
-    <div id="myFacts">
-      🔐 Login करके अपने Facts देखें।
-    </div>
-
-  </div>
+<footer class="footer">
+  🔥 Akash Facts
+  <br>
+  हर दिन कुछ नया सीखें 🚀
+</footer>
 
 </div>
 
 
-<footer>
-  🔥 Akash Facts | Learn Something New 🚀
-</footer>
-
-
-<!-- NORMAL JAVASCRIPT -->
+<!-- =========================
+     NORMAL JAVASCRIPT
+========================= -->
 
 <script>
 
-let likes = 0;
+/* FACT DATABASE */
 
 const facts = [
 
-/* SCIENCE */
+  {
+    text:"पानी सामान्य वायुदाब पर लगभग 100°C पर उबलता है।",
+    category:"science"
+  },
 
-{text:"🧬 इंसान के शरीर में लगभग 37 ट्रिलियन कोशिकाएँ होती हैं।",category:"science"},
-{text:"❤️ इंसान का दिल एक दिन में लगभग 100,000 बार धड़क सकता है।",category:"science"},
-{text:"🦴 वयस्क इंसान के शरीर में आम तौर पर 206 हड्डियाँ होती हैं।",category:"science"},
-{text:"💧 पृथ्वी की सतह का लगभग 71% हिस्सा पानी से ढका है।",category:"science"},
-{text:"🌈 इंद्रधनुष में आम तौर पर सात रंग बताए जाते हैं।",category:"science"},
-{text:"🔊 आवाज़ को यात्रा करने के लिए किसी माध्यम की जरूरत होती है।",category:"science"},
-{text:"🌡️ सामान्य दबाव पर पानी 100°C पर उबलता है।",category:"science"},
-{text:"🌱 पौधे प्रकाश संश्लेषण के जरिए भोजन बनाने में मदद करते हैं।",category:"science"},
-{text:"⚡ बिजली एक प्रकार की ऊर्जा है।",category:"science"},
-{text:"🔬 माइक्रोस्कोप बहुत छोटी चीजों को बड़ा करके देखने में मदद करता है।",category:"science"},
-{text:"🧪 रसायन विज्ञान पदार्थों और उनके बदलावों का अध्ययन करता है।",category:"science"},
-{text:"🌍 पृथ्वी का वायुमंडल कई गैसों का मिश्रण है।",category:"science"},
+  {
+    text:"प्रकाश की गति लगभग 3 लाख किलोमीटर प्रति सेकंड है।",
+    category:"science"
+  },
 
-/* SPACE */
+  {
+    text:"मानव शरीर में हृदय लगातार रक्त को पूरे शरीर में पंप करता है।",
+    category:"science"
+  },
 
-{text:"🌍 पृथ्वी सूर्य की परिक्रमा लगभग 365 दिनों में करती है।",category:"space"},
-{text:"🌙 चंद्रमा पृथ्वी का प्राकृतिक उपग्रह है।",category:"space"},
-{text:"☀️ सूर्य हमारे सौरमंडल का तारा है।",category:"space"},
-{text:"🔴 मंगल ग्रह को लाल ग्रह कहा जाता है।",category:"space"},
-{text:"🪐 शनि अपने छल्लों के लिए प्रसिद्ध है।",category:"space"},
-{text:"🌌 हमारी आकाशगंगा का नाम Milky Way है।",category:"space"},
-{text:"⭐ सूर्य एक तारा है।",category:"space"},
-{text:"🛰️ कृत्रिम उपग्रह पृथ्वी की परिक्रमा कर सकते हैं।",category:"space"},
-{text:"🚀 रॉकेट अंतरिक्ष तक पहुँचने के लिए बहुत अधिक गति प्राप्त करते हैं।",category:"space"},
-{text:"🌑 चंद्रमा अपनी रोशनी खुद नहीं बनाता।",category:"space"},
-{text:"🌀 बृहस्पति सौरमंडल का सबसे बड़ा ग्रह है।",category:"space"},
-{text:"💫 अंतरिक्ष में बहुत बड़ी संख्या में आकाशगंगाएँ हैं।",category:"space"},
+  {
+    text:"सूर्य एक तारा है।",
+    category:"space"
+  },
 
-/* ANIMALS */
+  {
+    text:"बृहस्पति हमारे सौरमंडल का सबसे बड़ा ग्रह है।",
+    category:"space"
+  },
 
-{text:"🐘 हाथी सबसे बड़े स्थलीय जानवरों में से हैं।",category:"animals"},
-{text:"🐬 डॉल्फिन समुद्री स्तनधारी हैं।",category:"animals"},
-{text:"🦒 जिराफ़ की गर्दन बहुत लंबी होती है।",category:"animals"},
-{text:"🐆 चीता सबसे तेज दौड़ने वाले स्थलीय जानवरों में से एक है।",category:"animals"},
-{text:"🐧 पेंगुइन उड़ नहीं सकते लेकिन अच्छे तैराक होते हैं।",category:"animals"},
-{text:"🦋 तितलियाँ अपने पैरों से स्वाद महसूस कर सकती हैं।",category:"animals"},
-{text:"🐙 ऑक्टोपस के तीन दिल होते हैं।",category:"animals"},
-{text:"🦇 चमगादड़ उड़ने में सक्षम स्तनधारी हैं।",category:"animals"},
-{text:"🐢 कुछ कछुए बहुत लंबी उम्र तक जीवित रह सकते हैं।",category:"animals"},
-{text:"🦉 उल्लू अपने सिर को बहुत बड़े कोण तक घुमा सकते हैं।",category:"animals"},
-{text:"🐝 मधुमक्खियाँ फूलों से अमृत और पराग एकत्र करती हैं।",category:"animals"},
-{text:"🐋 ब्लू व्हेल सबसे बड़ा ज्ञात जानवर है।",category:"animals"},
+  {
+    text:"ऑक्टोपस के तीन हृदय होते हैं।",
+    category:"animals"
+  },
 
-/* TECHNOLOGY */
+  {
+    text:"चीता जमीन पर दौड़ने वाले सबसे तेज जानवरों में से एक है।",
+    category:"animals"
+  },
 
-{text:"💻 कंप्यूटर बहुत तेजी से गणनाएँ कर सकते हैं।",category:"technology"},
-{text:"🌐 Internet दुनिया भर के कंप्यूटर नेटवर्क को जोड़ता है।",category:"technology"},
-{text:"📱 आधुनिक स्मार्टफोन में कई अलग-अलग sensors होते हैं।",category:"technology"},
-{text:"🤖 AI का मतलब Artificial Intelligence है।",category:"technology"},
-{text:"🔐 मजबूत पासवर्ड अकाउंट की सुरक्षा में मदद करता है।",category:"technology"},
-{text:"☁️ Cloud computing इंटरनेट के जरिए computing resources उपलब्ध कराती है।",category:"technology"},
-{text:"📡 Wi-Fi wireless network technology है।",category:"technology"},
-{text:"🖥️ HTML वेब पेज की structure बनाने के लिए इस्तेमाल होता है।",category:"technology"},
-{text:"🎨 CSS वेबसाइट का design और style बदलने के लिए इस्तेमाल होता है।",category:"technology"},
-{text:"⚙️ JavaScript वेबसाइट को interactive बनाने में मदद करता है।",category:"technology"},
-{text:"🐍 Python एक लोकप्रिय programming language है।",category:"technology"},
-{text:"📦 GitHub code को store और manage करने के लिए इस्तेमाल किया जाता है।",category:"technology"},
+  {
+    text:"कंप्यूटर डेटा को binary के रूप में process करते हैं।",
+    category:"technology"
+  },
 
-/* HISTORY */
+  {
+    text:"भारत का संविधान 26 जनवरी 1950 को लागू हुआ था।",
+    category:"india"
+  },
 
-{text:"🏛️ प्राचीन मिस्र में पिरामिड बनाए गए थे।",category:"history"},
-{text:"📜 कागज के शुरुआती रूपों में से एक का विकास चीन में हुआ था।",category:"history"},
-{text:"🏰 मध्यकाल में यूरोप में कई किले बनाए गए थे।",category:"history"},
-{text:"🧭 कंपास ने यात्रियों और नाविकों को दिशा पहचानने में मदद की।",category:"history"},
-{text:"🚂 भाप इंजन ने औद्योगिक क्रांति में महत्वपूर्ण भूमिका निभाई।",category:"history"},
-{text:"📚 पुस्तकालयों ने ज्ञान को सुरक्षित रखने में महत्वपूर्ण भूमिका निभाई।",category:"history"},
-{text:"🏺 पुरातत्वविद पुराने समय की सभ्यताओं के बारे में वस्तुओं से जानकारी प्राप्त करते हैं।",category:"history"},
-{text:"🗿 प्राचीन सभ्यताओं ने कई विशाल स्मारक बनाए।",category:"history"},
+  {
+    text:"ताजमहल आगरा में स्थित है।",
+    category:"india"
+  },
 
-/* WORLD */
+  {
+    text:"प्राचीन मिस्र में पिरामिड बनाए गए थे।",
+    category:"history"
+  },
 
-{text:"🌍 एशिया दुनिया का सबसे बड़ा महाद्वीप है।",category:"world"},
-{text:"🌊 प्रशांत महासागर पृथ्वी का सबसे बड़ा महासागर है।",category:"world"},
-{text:"🏔️ हिमालय दुनिया की सबसे प्रसिद्ध पर्वत श्रृंखलाओं में से एक है।",category:"world"},
-{text:"🌳 अमेज़न वर्षावन दुनिया के सबसे बड़े tropical rainforests में से है।",category:"world"},
-{text:"🗺️ दुनिया में कई अलग-अलग भाषाएँ बोली जाती हैं।",category:"world"},
-{text:"🌎 पृथ्वी पर सात महाद्वीप माने जाते हैं।",category:"world"},
-{text:"🏜️ सहारा दुनिया के सबसे प्रसिद्ध गर्म रेगिस्तानों में से एक है।",category:"world"},
-{text:"🌋 ज्वालामुखी पृथ्वी के अंदर से गर्म पदार्थ बाहर ला सकते हैं।",category:"world"}
+  {
+    text:"पृथ्वी सूर्य की परिक्रमा करती है।",
+    category:"world"
+  },
+
+  {
+    text:"पृथ्वी पर पानी तीन मुख्य अवस्थाओं में पाया जाता है।",
+    category:"interesting"
+  }
 
 ];
 
 
+/* CURRENT CATEGORY */
+
+let currentCategory = "all";
+
+
 /* SHOW FACT */
 
-function showFact(){
+window.showFact = function(){
 
-  const category =
-    document.getElementById("category").value;
+  let list = facts;
 
-  let filtered = facts;
+  if(currentCategory !== "all"){
 
-  if(category !== "all"){
-    filtered = facts.filter(
-      fact => fact.category === category
+    list = facts.filter(
+      item => item.category === currentCategory
     );
+
   }
 
-  if(filtered.length === 0){
+  if(list.length === 0){
+
     document.getElementById("fact").innerText =
       "❌ इस category में कोई Fact नहीं है।";
+
     return;
+
   }
 
-  const random =
-    Math.floor(Math.random() * filtered.length);
+  const index =
+    Math.floor(Math.random() * list.length);
+
+  const selected = list[index];
 
   document.getElementById("fact").innerText =
-    filtered[random].text;
-}
+    "💡 " + selected.text;
+
+  document.getElementById("factCategory").innerText =
+    "📚 " + selected.category;
+
+};
 
 
-function showCategory(categoryName){
+/* CATEGORY */
 
-  const categorySelect =
-    document.getElementById("category");
+window.showCategory = function(category){
 
-  categorySelect.value = categoryName;
+  currentCategory = category;
 
   showFact();
 
   window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+    top:0,
+    behavior:"smooth"
   });
-}
 
-
-
-/* LIKE */
-
-function likeFact(){
-
-  likes++;
-
-  document.getElementById("likes").innerText =
-    "❤️ Likes: " + likes;
-}
-
-
-/* COPY */
-
-function copyFact(){
-
-  const text =
-    document.getElementById("fact").innerText;
-
-  if(navigator.clipboard){
-
-    navigator.clipboard.writeText(text)
-      .then(()=>{
-        alert("📋 Fact copied!");
-      })
-      .catch(()=>{
-        alert("Copy नहीं हो पाया।");
-      });
-
-  }else{
-
-    alert("इस browser में Copy उपलब्ध नहीं है।");
-
-  }
-}
-
-
-/* SHARE */
-
-function shareFact(){
-
-  const text =
-    document.getElementById("fact").innerText;
-
-  if(navigator.share){
-
-    navigator.share({
-      title:"Akash Facts",
-      text:text
-    }).catch(()=>{});
-
-  }else{
-
-    alert("📤 इस browser में Share उपलब्ध नहीं है।");
-
-  }
-}
-
-
-/* DARK MODE */
-
-function toggleMode(){
-
-  document.body.classList.toggle("dark");
-
-  localStorage.setItem(
-    "darkMode",
-    document.body.classList.contains("dark")
-  );
-
-}
-
-
-/* LOAD DARK MODE */
-
-if(localStorage.getItem("darkMode") === "true"){
-  document.body.classList.add("dark");
-}
+};
 
 
 /* SEARCH */
 
-function searchFacts(){
+window.searchFacts = function(){
 
-  const search =
-    document.getElementById("searchFact")
+  const value =
+    document
+      .getElementById("searchFact")
       .value
       .toLowerCase()
       .trim();
@@ -985,18 +922,20 @@ function searchFacts(){
   const box =
     document.getElementById("results");
 
-  if(search === ""){
-    box.innerHTML="";
+  if(value === ""){
+
+    box.innerHTML = "";
+
     return;
   }
 
-  const results =
+  const result =
     facts.filter(
-      fact =>
-        fact.text.toLowerCase().includes(search)
+      item =>
+        item.text.toLowerCase().includes(value)
     );
 
-  if(results.length === 0){
+  if(result.length === 0){
 
     box.innerHTML =
       "<div class='result'>❌ कोई Fact नहीं मिला।</div>";
@@ -1005,26 +944,120 @@ function searchFacts(){
   }
 
   box.innerHTML =
-    results.map(
-      fact =>
-        "<div class='result'>" +
-        escapeHtml(fact.text) +
+    result.map(
+      item =>
+        "<div class='result'>💡 " +
+        escapeHtml(item.text) +
         "</div>"
     ).join("");
 
-}
+};
 
 
-/* HTML SECURITY */
+/* ESCAPE HTML */
 
 function escapeHtml(text){
 
-  const div = document.createElement("div");
+  const div =
+    document.createElement("div");
 
   div.textContent = text;
 
   return div.innerHTML;
+
 }
+
+
+/* DARK MODE */
+
+window.toggleMode = function(){
+
+  document.body.classList.toggle("dark");
+
+  localStorage.setItem(
+    "darkMode",
+    document.body.classList.contains("dark")
+  );
+
+};
+
+
+if(
+  localStorage.getItem("darkMode") === "true"
+){
+
+  document.body.classList.add("dark");
+
+}
+
+
+/* LIKE */
+
+window.likeFact = function(){
+
+  alert("❤️ Fact liked!");
+
+};
+
+
+/* COPY */
+
+window.copyFact = async function(){
+
+  const text =
+    document.getElementById("fact").innerText;
+
+  try{
+
+    await navigator.clipboard.writeText(text);
+
+    alert("📋 Fact copied!");
+
+  }catch(error){
+
+    alert("❌ Copy नहीं हुआ।");
+
+  }
+
+};
+
+
+/* SHARE */
+
+window.shareFact = async function(){
+
+  const text =
+    document.getElementById("fact").innerText;
+
+  const data = {
+    title:"🔥 Akash Facts",
+    text:text,
+    url:window.location.href
+  };
+
+  try{
+
+    if(navigator.share){
+
+      await navigator.share(data);
+
+    }else{
+
+      await navigator.clipboard.writeText(
+        text + "\n" + window.location.href
+      );
+
+      alert("📋 Share link copied!");
+
+    }
+
+  }catch(error){
+
+    console.log("Share cancelled");
+
+  }
+
+};
 
 
 /* FIRST FACT */
@@ -1034,14 +1067,15 @@ showFact();
 </script>
 
 
-<!-- FIREBASE -->
+<!-- =========================
+     FIREBASE
+========================= -->
 
 <script type="module">
 
 import {
   initializeApp
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
 
 import {
   getFirestore,
@@ -1050,13 +1084,11 @@ import {
   getDocs,
   query,
   where,
-  deleteDoc,
-  doc,
   updateDoc,
+  doc,
   increment,
   arrayUnion
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
 
 import {
   getAuth,
@@ -1067,23 +1099,23 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
-/* FIREBASE CONFIG */
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyD3QxU0wlO6efmH1cinuH73SzAMjwVIYSk",
+  apiKey:"YOUR_API_KEY",
 
-  authDomain: "akash-facts.firebaseapp.com",
+  authDomain:"YOUR_AUTH_DOMAIN",
 
-  projectId: "akash-facts",
+  projectId:"YOUR_PROJECT_ID",
 
-  storageBucket: "akash-facts.firebasestorage.app",
+  storageBucket:"YOUR_STORAGE_BUCKET",
 
-  messagingSenderId: "7676171690",
+  messagingSenderId:"YOUR_MESSAGING_SENDER_ID",
 
-  appId: "1:7676171690:web:8f47fa4a96eecdd4d287d3",
-
-  measurementId: "G-LS6R659885"
+  appId:"YOUR_APP_ID"
 
 };
 
@@ -1103,9 +1135,14 @@ const provider =
   new GoogleAuthProvider();
 
 
+/* CURRENT USER */
+
+window.currentUser = null;
+
+
 /* GOOGLE LOGIN */
 
-window.googleLogin = async function(){
+window.loginGoogle = async function(){
 
   try{
 
@@ -1130,20 +1167,15 @@ window.googleLogin = async function(){
 
 /* LOGOUT */
 
-window.logout = async function(){
+window.logoutGoogle = async function(){
 
   try{
 
     await signOut(auth);
 
-    alert("👋 Logout हो गया!");
-
   }catch(error){
 
-    alert(
-      "❌ Logout error: " +
-      error.message
-    );
+    console.error(error);
 
   }
 
@@ -1154,50 +1186,44 @@ window.logout = async function(){
 
 onAuthStateChanged(
   auth,
-  async (user)=>{
+  async function(user){
 
     window.currentUser = user;
 
-    const userInfo =
-      document.getElementById("userInfo");
+    const button =
+      document.getElementById("loginButton");
 
-    const loginBtn =
-      document.getElementById("loginBtn");
-
-    const logoutBtn =
-      document.getElementById("logoutBtn");
-
+    const userBox =
+      document.getElementById("userBox");
 
     if(user){
 
-      userInfo.innerHTML =
-        "👋 Welcome " +
-        escapeHtml(user.displayName || "User");
+      button.innerText = "🚪 Logout";
 
+      button.onclick =
+        window.logoutGoogle;
 
-      loginBtn.style.display =
-        "none";
-
-      logoutBtn.style.display =
-        "block";
-
+      userBox.innerHTML = `
+        <img src="${user.photoURL || ""}">
+        👋 Welcome,
+        ${escapeHtml(user.displayName || "User")}
+      `;
 
       await loadMyFacts();
 
     }else{
 
-      userInfo.innerHTML =
-        "";
+      button.innerText =
+        "🔐 Google Login";
 
-      loginBtn.style.display =
-        "block";
+      button.onclick =
+        window.loginGoogle;
 
-      logoutBtn.style.display =
-        "none";
-
+      userBox.innerHTML =
+        "🔐 Login करके Community Features इस्तेमाल करें";
 
       document.getElementById("myFacts").innerHTML =
-        "🔐 पहले Google Login करो।";
+        "🔐 Google Login करें।";
 
     }
 
@@ -1205,7 +1231,7 @@ onAuthStateChanged(
 );
 
 
-/* SAVE NORMAL FACT */
+/* SAVE FACT */
 
 window.saveFact = async function(text){
 
@@ -1216,7 +1242,6 @@ window.saveFact = async function(text){
     );
 
   }
-
 
   await addDoc(
     collection(db,"facts"),
@@ -1234,10 +1259,9 @@ window.saveFact = async function(text){
 
       type:"userFact",
 
-      createdAt:
-        Date.now(),
+      likes:0,
 
-      likes:0
+      createdAt:Date.now()
 
     }
   );
@@ -1257,13 +1281,11 @@ window.addFact = async function(){
 
   }
 
-
   const input =
     document.getElementById("newFact");
 
   const text =
     input.value.trim();
-
 
   if(text === ""){
 
@@ -1273,32 +1295,22 @@ window.addFact = async function(){
 
   }
 
-
   try{
 
     facts.push({
-
-      text:"💡 " + text,
-
+      text:text,
       category:"science"
-
     });
-
 
     await window.saveFact(text);
 
-
-    input.value="";
+    input.value = "";
 
     alert(
       "✅ आपका Fact जोड़ दिया गया!"
     );
 
-
     showFact();
-
-    searchFacts();
-
 
     await loadMyFacts();
 
@@ -1319,94 +1331,80 @@ window.addFact = async function(){
 /* CREATE SOCIAL POST */
 
 window.createSocialPost =
-  async function(){
+async function(){
 
-    if(!window.currentUser){
+  if(!window.currentUser){
 
-      alert(
-        "🔐 पहले Google Login करो!"
-      );
+    alert("🔐 पहले Google Login करो!");
 
-      return;
+    return;
 
-    }
+  }
 
+  const input =
+    document.getElementById(
+      "socialPostText"
+    );
 
-    const input =
-      document.getElementById(
-        "socialPostText"
-      );
+  const text =
+    input.value.trim();
 
+  if(text === ""){
 
-    const text =
-      input.value.trim();
+    alert("⚠️ पहले अपना Fact लिखो!");
 
+    return;
 
-    if(text === ""){
+  }
 
-      alert(
-        "⚠️ पहले अपना Fact लिखो!"
-      );
+  try{
 
-      return;
+    await addDoc(
+      collection(db,"facts"),
+      {
 
-    }
+        text:"💡 " + text,
 
+        category:"science",
 
-    try{
+        userName:
+          window.currentUser.displayName ||
+          "Facts Creator",
 
-      await addDoc(
-        collection(db,"facts"),
-        {
+        userId:
+          window.currentUser.uid,
 
-          text:"💡 " + text,
+        type:"socialPost",
 
-          category:"science",
+        likes:0,
 
-          userName:
-            window.currentUser.displayName ||
-            "Facts Creator",
+        comments:[],
 
-          userId:
-            window.currentUser.uid,
+        createdAt:Date.now()
 
-          type:"socialPost",
+      }
+    );
 
-          likes:0,
+    input.value = "";
 
-          comments:[],
+    alert("✅ आपका Post हो गया!");
 
-          createdAt:
-            Date.now()
+    await loadSocialPosts();
 
-        }
-      );
+    await loadMyFacts();
 
+  }catch(error){
 
-      input.value="";
+    console.error(error);
 
-      alert(
-        "✅ आपका Post हो गया!"
-      );
+    alert(
+      "❌ Post नहीं हुआ:\n" +
+      error.message
+    );
 
+  }
 
-      await loadSocialPosts();
-
-
-      await loadMyFacts();
-
-    }catch(error){
-
-      console.error(error);
-
-      alert(
-        "❌ Post नहीं हुआ:\n" +
-        error.message
-      );
-
-    }
-
-  };
+};
 
 
 /* LOAD SOCIAL POSTS */
@@ -1420,28 +1418,19 @@ async function loadSocialPosts(){
         collection(db,"facts")
       );
 
-
-    const posts=[];
-
+    const posts = [];
 
     snapshot.forEach(
-      (item)=>{
+      item => {
 
         const data =
           item.data();
 
-
-        if(
-          data.type ===
-          "socialPost"
-        ){
+        if(data.type === "socialPost"){
 
           posts.push({
-
             id:item.id,
-
             ...data
-
           });
 
         }
@@ -1449,209 +1438,46 @@ async function loadSocialPosts(){
       }
     );
 
-
     posts.sort(
-      (a,b)=>
+      (a,b) =>
         (b.createdAt || 0) -
         (a.createdAt || 0)
     );
 
-
-    const feed =
+    const box =
       document.getElementById(
         "socialPosts"
       );
 
-
-    if(!feed) return;
-
-
     if(posts.length === 0){
 
-      feed.innerHTML = `
-
-        <div class="post">
-
-          <p>
-            📭 अभी कोई नया Social Post नहीं है।
-          </p>
-
-        </div>
-
-      `;
+      box.innerHTML =
+        "<div class='post'>📭 अभी कोई Social Post नहीं है।</div>";
 
       return;
 
-    }
-
-
-    feed.innerHTML="";
-
-
-    posts.forEach((post) => {
-      const comments = Array.isArray(post.comments)
-        ? post.comments
-        : [];
-
-      feed.innerHTML += `
-        <div class="post">
-          <div class="post-user">
-            👤 ${escapeHtml(post.userName || "Facts Creator")}
-          </div>
-
-          <p>${escapeHtml(post.text || "")}</p>
-
-          <div class="post-actions">
-
-  <button onclick="likeSocialPost('${post.id}')">
-    ❤️ ${post.likes || 0}
-  </button>
-
-  <button onclick="addSocialComment('${post.id}')">
-    💬 ${comments.length}
-  </button>
-
-  <button onclick="shareSocialPost('${post.id}')">
-    📤 Share
-  </button>
-
-</div>
-        </div>
-      `;
-    });
-
-  }catch(error){
-    console.error("Social posts error:", error);
-  }
-}
-// SOCIAL POST ACTIONS
-
-window.likeSocialPost = async function(postId){
-  if(!window.currentUser){
-    alert("🔐 पहले Google Login करो!");
-    return;
-  }
-
-  try{
-    await updateDoc(
-      doc(db, "facts", postId),
-      {
-        likes: increment(1)
-      }
-    );
-
-    await loadSocialPosts();
-
-  }catch(error){
-    console.error(error);
-    alert("❌ Like नहीं हुआ!");
-  }
-};
-
-
-window.addSocialComment = async function(postId){
-  if(!window.currentUser){
-    alert("🔐 पहले Google Login करो!");
-    return;
-  }
-
-  const text = prompt("💬 अपना Comment लिखें:");
-
-  if(!text || text.trim() === "") return;
-
-  try{
-    await updateDoc(
-      doc(db, "facts", postId),
-      {
-        comments: arrayUnion({
-          text: text.trim(),
-          userName: window.currentUser.displayName || "User",
-          userId: window.currentUser.uid,
-          createdAt: Date.now()
-        })
-      }
-    );
-
-    await loadSocialPosts();
-
-  }catch(error){
-    console.error(error);
-    alert("❌ Comment नहीं हुआ!");
-  }
-};
-
-
-window.shareSocialPost = async function(postId){
-  try{
-    const shareData = {
-      title: "🔥 Akash Facts",
-      text: "Interesting Fact 🔥",
-      url: window.location.href
-    };
-
-    if(navigator.share){
-      await navigator.share(shareData);
-    }else{
-      await navigator.clipboard.writeText(window.location.href);
-      alert("📋 Link copied!");
-    }
-
-  }catch(error){
-    console.log("Share cancelled");
-  }
-};
-
-/* START SOCIAL POSTS */
-loadSocialPosts();
-
-
-/* MY FACTS */
-async function loadMyFacts(){
-
-  const box = document.getElementById("myFacts");
-
-  if(!window.currentUser){
-    box.innerHTML = "🔐 पहले Google Login करो।";
-    return;
-  }
-
-  try{
-
-    const q = query(
-      collection(db,"facts"),
-      where("userId","==",window.currentUser.uid)
-    );
-
-    const snapshot = await getDocs(q);
-
-    if(snapshot.empty){
-      box.innerHTML = "📭 आपने अभी कोई Fact नहीं बनाया है।";
-      return;
     }
 
     box.innerHTML = "";
 
-    snapshot.forEach((item) => {
+    posts.forEach(post => {
 
-      const data = item.data();
+      const comments =
+        Array.isArray(post.comments)
+          ? post.comments
+          : [];
 
       box.innerHTML += `
-        <div class="my-fact">
-          <p>${escapeHtml(data.text || "")}</p>
-        </div>
-      `;
 
-    });
+        <div class="post">
 
-  }catch(error){
+          <div class="post-user">
+            👤
+            ${escapeHtml(
+              post.userName ||
+              "Facts Creator"
+            )}
+          </div>
 
-    console.error(error);
-
-    box.innerHTML =
-      "❌ Facts load नहीं हुए।";
-
-  }
-}
-
-</script>
-     
+          <p>
+          
