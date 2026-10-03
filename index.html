@@ -1208,7 +1208,22 @@ window.logoutGoogle = async function(){
 
 onAuthStateChanged(
   auth,
-  async function(user){
+  async function(user){// PROFILE INFORMATION
+const profilePhoto = document.getElementById("profilePhoto");
+const profileName = document.getElementById("profileName");
+const profileEmail = document.getElementById("profileEmail");
+
+if(profilePhoto){
+  profilePhoto.src = user.photoURL || "";
+}
+
+if(profileName){
+  profileName.innerText = user.displayName || "User";
+}
+
+if(profileEmail){
+  profileEmail.innerText = user.email || "";
+  }
 
     window.currentUser = user;
 
