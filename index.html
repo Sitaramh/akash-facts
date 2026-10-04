@@ -1792,7 +1792,59 @@ async function loadMyFacts(){
 
 }
 
+/* PROFILE STATS */
 
+async function loadProfileStats(){
+
+  if(!window.currentUser) return;
+
+  try{
+
+    const snapshot =
+      await getDocs(collection(db,"facts"));
+
+    let factsCount = 0;
+    let postsCount = 0;
+
+    snapshot.forEach(item => {
+
+      const data = item.data();
+
+      if(data.userId === window.currentUser.uid){
+
+        if(data.type === "userFact"){
+          factsCount++;
+        }
+
+        if(data.type === "socialPost"){
+          postsCount++;
+        }
+
+      }
+
+    });
+
+    const factsBox =
+      document.getElementById("profileFacts");
+
+    const postsBox =
+      document.getElementById("profilePosts");
+
+    if(factsBox){
+      factsBox.innerText = factsCount;
+    }
+
+    if(postsBox){
+      postsBox.innerText = postsCount;
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+}
 /* LOAD SOCIAL POSTS */
 
 loadSocialPosts();
