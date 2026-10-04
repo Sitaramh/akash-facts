@@ -1208,22 +1208,7 @@ window.logoutGoogle = async function(){
 
 onAuthStateChanged(
   auth,
-  async function(user){// PROFILE INFORMATION
-const profilePhoto = document.getElementById("profilePhoto");
-const profileName = document.getElementById("profileName");
-const profileEmail = document.getElementById("profileEmail");
-
-if(profilePhoto){
-  profilePhoto.src = user.photoURL || "";
-}
-
-if(profileName){
-  profileName.innerText = user.displayName || "User";
-}
-
-if(profileEmail){
-  profileEmail.innerText = user.email || "";
-  }
+  async function(user){
 
     window.currentUser = user;
 
@@ -1235,10 +1220,34 @@ if(profileEmail){
 
     if(user){
 
-      button.innerText = "🚪 Logout";
+      // PROFILE
+      const profilePhoto =
+        document.getElementById("profilePhoto");
 
-      button.onclick =
-        window.logoutGoogle;
+      const profileName =
+        document.getElementById("profileName");
+
+      const profileEmail =
+        document.getElementById("profileEmail");
+
+      if(profilePhoto){
+        profilePhoto.src =
+          user.photoURL || "";
+      }
+
+      if(profileName){
+        profileName.innerText =
+          user.displayName || "User";
+      }
+
+      if(profileEmail){
+        profileEmail.innerText =
+          user.email || "";
+      }
+
+      // LOGIN BUTTON
+      button.innerText = "🚪 Logout";
+      button.onclick = window.logoutGoogle;
 
       userBox.innerHTML = `
         <img src="${user.photoURL || ""}">
@@ -1250,11 +1259,9 @@ if(profileEmail){
 
     }else{
 
-      button.innerText =
-        "🔐 Google Login";
-
-      button.onclick =
-        window.loginGoogle;
+      // LOGOUT
+      button.innerText = "🔐 Google Login";
+      button.onclick = window.loginGoogle;
 
       userBox.innerHTML =
         "🔐 Login करके Community Features इस्तेमाल करें";
@@ -1265,6 +1272,7 @@ if(profileEmail){
     }
 
   }
+);
 );
 
 
