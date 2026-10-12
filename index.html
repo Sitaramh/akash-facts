@@ -1567,32 +1567,48 @@ async function loadSocialPosts(){
 }
 
 
-/* LIKE POST */
+/* SMART LIKE POST */
 
-window.likePost = async function(postId){
+window.likePost = async function(postId) {
+  if (!window.currentUser) {
+    alert("🔐 पहले Google Login करो!");
+    return;
+  }
 
-  try{
+  try {
+    const postRef = doc(db, "facts", postId);
+    const snapshot = await getDocs(collection(db, "facts"));
+    let postData = null;
 
-    await updateDoc(
-      doc(db,"facts",postId),
-      {
-        likes: increment(1)
-      }
-    );
+    snapshot.forEach(item => {
+      if (item.id === postId) postData = item.data();
+    });
+
+    if (!postData) {
+      alert("❌ Post नहीं मिला!");
+      return;
+    }
+
+    const likedBy = Array.isArray(postData.likedBy)
+      ? postData.likedBy
+      : [];
+
+    if (likedBy.includes(window.currentUser.uid)) {
+      alert("❤️ आप इस Post को पहले ही Like कर चुके हैं!");
+      return;
+    }
+
+    await updateDoc(postRef, {
+      likes: increment(1),
+      likedBy: arrayUnion(window.currentUser.uid)
+    });
 
     await loadSocialPosts();
 
-  }catch(error){
-
+  } catch (error) {
     console.error(error);
-
-    alert(
-      "❌ Like नहीं हुआ:\n" +
-      error.message
-    );
-
+    alert("❌ Like नहीं हुआ: " + error.message);
   }
-
 };
 
 
