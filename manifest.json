@@ -1,0 +1,12 @@
+
+{
+  "id": "/akash-facts/",
+  "name": "Akash Facts",
+  "short_name": "Akash Facts",
+  "description": "हर दिन कुछ नया और interesting जानिए",
+  "start_url": "/akash-facts/",
+  "scope": "/akash-facts/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#f97316"
+}
