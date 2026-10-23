@@ -10,15 +10,17 @@
   "background_color": "#0B1020",
   "theme_color": "#1677FF",
   "icons": [
-    {
-      "src": "/akash-facts/192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/akash-facts/512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+  {
+    "src": "/akash-facts/indraverse-icon-192.png",
+    "sizes": "192x192",
+    "type": "image/png",
+    "purpose": "any maskable"
+  },
+  {
+    "src": "/akash-facts/indraverse-icon-512.png",
+    "sizes": "512x512",
+    "type": "image/png",
+    "purpose": "any maskable"
+  }
   ]
-}
+
