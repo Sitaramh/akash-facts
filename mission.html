@@ -121,8 +121,36 @@ document.querySelectorAll(".mission button").forEach((button,index)=>{
   button.disabled=true;
  }
 });
+ 
+function updateBadges(){
+  document.getElementById("badge1").textContent =
+    xp >= 20 ? "🏅 Knowledge Explorer — Unlocked!" :
+    "🔒 Knowledge Explorer — 20 XP";
+
+  document.getElementById("badge2").textContent =
+    xp >= 50 ? "🥈 Science Star — Unlocked!" :
+    "🔒 Science Star — 50 XP";
+
+  document.getElementById("badge3").textContent =
+    xp >= 100 ? "🥇 Quiz Champion — Unlocked!" :
+    "🔒 Quiz Champion — 100 XP";
+}
+
+updateBadges();
+ 
 
 updateProgress();
+ updateBadges();
+ 
+<div class="profile">
+  <h2>🏆 Achievement Badges</h2>
+  <div id="badges">
+    <p id="badge1">🔒 Knowledge Explorer — 20 XP</p>
+    <p id="badge2">🔒 Science Star — 50 XP</p>
+    <p id="badge3">🔒 Quiz Champion — 100 XP</p>
+  </div>
+</div>
+ 
 </script>
 </body>
 </html>
