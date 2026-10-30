@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INDRAVERSE - Mission Universe</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;padding:20px;
+ background:#080e20;color:white;
+ font-family:Arial,sans-serif;
+}
+.container{max-width:600px;margin:auto}
+h1{color:#42d9ff;text-align:center}
+.subtitle{text-align:center;color:#aabbd5}
+.profile{
+ background:#142442;padding:18px;
+ border-radius:16px;margin:22px 0;
+ border:1px solid #24547b;
+}
+.progress{
+ height:10px;background:#263957;
+ border-radius:20px;overflow:hidden;
+}
+#bar{height:100%;width:0%;background:#36d7ff}
+.mission{
+ background:#142442;padding:17px;
+ margin:14px 0;border-radius:15px;
+ border:1px solid #263e61;
+}
+.mission h3{margin-top:0}
+button{
+ background:#16bce9;color:#071426;
+ border:0;padding:11px 17px;
+ border-radius:9px;font-weight:bold;
+}
+button:disabled{background:#52647b;color:white}
+.points{color:#49e0ff}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🌌 MISSION UNIVERSE</h1>
+<p class="subtitle">Explore • Learn • Achieve</p>
+
+<div class="profile">
+<h2>⭐ Your Progress</h2>
+<p>Level: <span id="level">1</span></p>
+<p>XP Points: <span id="xp">0</span></p>
+<div class="progress"><div id="bar"></div></div>
+<p id="progressText">0 / 100 XP</p>
+</div>
+
+<h2>🚀 Daily Missions</h2>
+
+<div class="mission">
+<h3>🧠 Knowledge Explorer</h3>
+<p>आज कुछ नया सीखो।</p>
+<p class="points">Reward: 20 XP</p>
+<button onclick="completeMission(this,20)">Complete Mission</button>
+</div>
+
+<div class="mission">
+<h3>🔬 Science Mission</h3>
+<p>विज्ञान से जुड़ी एक नई जानकारी सीखो।</p>
+<p class="points">Reward: 30 XP</p>
+<button onclick="completeMission(this,30)">Complete Mission</button>
+</div>
+
+<div class="mission">
+<h3>📚 Quiz Champion</h3>
+<p>एक सामान्य ज्ञान का सवाल हल करो।</p>
+<p class="points">Reward: 50 XP</p>
+<button onclick="completeMission(this,50)">Complete Mission</button>
+</div>
+
+</div>
+
+<script>
+let xp = Number(localStorage.getItem("missionXP") || 0);
+let completed = JSON.parse(
+ localStorage.getItem("missionCompleted") || "[]"
+);
+
+function updateProgress(){
+ document.getElementById("xp").textContent=xp;
+ let level=Math.floor(xp/100)+1;
+ let progress=xp%100;
+ document.getElementById("level").textContent=level;
+ document.getElementById("bar").style.width=progress+"%";
+ document.getElementById("progressText").textContent=
+ progress+" / 100 XP";
+}
+
+function completeMission(button,points){
+ let index=Array.from(
+ document.querySelectorAll(".mission button")
+ ).indexOf(button);
+
+ if(completed.includes(index))return;
+
+ completed.push(index);
+ xp+=points;
+
+ localStorage.setItem("missionXP",xp);
+ localStorage.setItem(
+ "missionCompleted",JSON.stringify(completed)
+ );
+
+ button.textContent="✓ Completed";
+ button.disabled=true;
+ updateProgress();
+}
+
+document.querySelectorAll(".mission button").forEach((button,index)=>{
+ if(completed.includes(index)){
+  button.textContent="✓ Completed";
+  button.disabled=true;
+ }
+});
+
+updateProgress();
+</script>
+</body>
+</html>
