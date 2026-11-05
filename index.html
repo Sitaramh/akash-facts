@@ -1708,48 +1708,35 @@ window.sharePost = async function(postId){
 
 
 /* LOAD MY FACTS */
-
 async function loadMyFacts(){
 
-  const box =
-    document.getElementById("myFacts");
+  const box = document.getElementById("myFacts");
 
   if(!box) return;
 
   if(!window.currentUser){
-
-    box.innerHTML =
-      "🔐 Google Login करें।";
-
+    box.innerHTML = "🔐 Google Login करें।";
     return;
-
   }
 
   try{
 
-    const snapshot =
-      await getDocs(
-        collection(db,"facts")
-      );
+    const q = query(
+      collection(db,"facts"),
+      where("userId","==",window.currentUser.uid)
+    );
+
+    const snapshot = await getDocs(q);
 
     const myFacts = [];
 
     snapshot.forEach(item => {
-
       const data = item.data();
 
-      if(
-        data.userId ===
-        window.currentUser.uid
-      ){
-
-        myFacts.push({
-          id:item.id,
-          ...data
-        });
-
-      }
-
+      myFacts.push({
+        id:item.id,
+        ...data
+      });
     });
 
     myFacts.sort(
@@ -1759,62 +1746,38 @@ async function loadMyFacts(){
     );
 
     if(myFacts.length === 0){
-
       box.innerHTML =
         "<div class='post'>📭 आपने अभी कोई Fact नहीं बनाया।</div>";
-
       return;
-
     }
 
     box.innerHTML = "";
 
     myFacts.forEach(item => {
-
       box.innerHTML += `
-
         <div class="post">
-
           <div class="post-user">
-            👤 ${escapeHtml(
-              item.userName || "User"
-            )}
+            👤 ${escapeHtml(item.userName || "User")}
           </div>
-
-          <p>
-            ${escapeHtml(item.text || "")}
-          </p>
-
-          <small>
-            📂 ${escapeHtml(
-              item.category || "science"
-            )}
-          </small>
-
+          <p>${escapeHtml(item.text || "")}</p>
+          <small>📂 ${escapeHtml(item.category || "science")}</small>
         </div>
-
       `;
-
     });
 
   }catch(error){
 
     console.error(error);
 
-    box.innerHTML =
-      "❌ आपके Facts load नहीं हुए।";
+    box.innerHTML = "❌ आपके Facts load नहीं हुए।";
 
   }
-
 }
 
-/* PROFILE STATS */
-
+/* PROFILE STATS 
 async function loadProfileStats(){
-
-  if(!window.currentUser) return;
-
-  try{
+  if(!window.currentUse
+  tr
 
     const snapshot =
       await getDocs(collection(db,"facts"));
